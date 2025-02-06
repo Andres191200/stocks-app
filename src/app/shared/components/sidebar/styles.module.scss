@@ -1,4 +1,6 @@
 .sidebarComponent{
+    padding: 2rem;
+    box-sizing: border-box;
     width: var(--sidebar-width);
     height: 100vh;
     background-color: var(--dark-secondary);

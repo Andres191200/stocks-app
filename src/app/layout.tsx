@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import '@/app/globals.scss';
-import Sidebar from "./components/sidebar/Sidebar";
+import Sidebar from "./shared/components/sidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Stock Viewer",
