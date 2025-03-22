@@ -1,0 +1,36 @@
+.errorComponent{
+    color:var(--warning);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.errorContainer{
+    display: inline-flex;
+    align-items: center;
+    gap:.5rem;
+    padding: var(--padding-md) var(--padding-lg);
+    border-radius: var(--border-radius-md);
+    background-color: hsla(22, 100%, 63%, .1);
+    backdrop-filter: blur(100px);
+
+    img{
+        filter: invert(75%) sepia(31%) saturate(5487%) hue-rotate(330deg) brightness(101%) contrast(101%);
+    }
+}
+
+.errorInfo{
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-md);
+    
+    span{
+        background-color: var(--warning-l-60);
+        width: max-content;
+        padding: var(--padding-sm);
+        border-radius: var(--border-radius-sm);
+        color:var(--warning-l-10);
+    }
+}

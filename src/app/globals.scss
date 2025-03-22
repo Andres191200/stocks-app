@@ -18,17 +18,31 @@
   --dark-primary-80: hsla(244, 20%, 16%, .8);
   --dark-seconday-80: hsla(244, 16%, 20%, .8);
 
-  --light-primary: hsl(244, 18%, 90%);
+  --light-primary: hsl(247, 18%, 90%);
   --light-primary-60: hsla(244, 18%, 90%, .6);
+
+  --warning: hsl(22, 100%, 63%);
+  --warning-l-60: hsl(22, 100%, 60%);
+  --warning-l-10: hsl(22, 100%, 10%);
+
 
   --btc-stock-color: #F7931A;
   --eth-stock-color: #444A77;
   --doge-stock-color: #D7CDAA;
   --ada-stock-color: var(--light-primary);
 
-  --margin-lg: 2rem;
-  --margin-md: 1rem;
   --margin-sm: .5rem;
+  --margin-md: 1rem;
+  --margin-lg: 2rem;
+
+  --padding-sm: .5rem;
+  --padding-md: 1rem;
+  --padding-lg: 1.5rem;
+  --padding-2md: 2rem;
+
+  --border-radius-sm: .25rem;
+  --border-radius-md: .5rem;
+  --border-radius-lg: 1rem;
 }
 
 *{
@@ -140,6 +154,8 @@ section {
 body {
   line-height: 1;
   display: flex;
+  min-height: 100vh;
+  position:relative;
 }
 ol,
 ul {

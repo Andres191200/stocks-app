@@ -1,7 +1,7 @@
 .stockCardComponent{
     background-color: var(--dark-secondary);
     border-radius: var(--default-border-radius);
-    padding:var(--margin-md);
+    padding:var(--padding-md) var(--padding-md) var(--padding-2md) var(--padding-md);
     color: var(--light-primary);
 
 
@@ -15,15 +15,15 @@
 .stockCardHeader{
     display: flex;
     line-height: 135%;
+    position:relative;  
     justify-content: space-between;
     font-weight: 400;
-
-    span{
-        font-weight: 600;
-    }
-
-    .stockSymbol{
-        color: var(--light-primary-60);
+    &:hover{
+        .stockNameContainer::after{
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
@@ -31,4 +31,57 @@
     display: block;
     margin-top:var(--margin-md);
     font-weight: 600;
+}
+
+.stockNameContainer{
+    max-width: 65%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.stockNameContainer::after{
+    content: var(--tooltip-content);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 250ms ease;
+    transition-behavior: allow-discrete;
+    position:absolute;
+    margin: 0;
+    bottom: 200%;
+    left: 20px;
+    border-radius: var(--border-radius-md);
+    z-index: 10;
+    padding:var(--padding-sm);
+    pointer-events: none;
+    background-color: var(--dark-tertiary);
+
+    @starting-style{
+        pointer-events: none;
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.aditionalStockInfoContainer{
+    display: flex;
+    gap: var(--margin-sm);
+}
+
+.stockNameContainer
+
+.stockName{
+    font-weight: 600;
+    text-wrap: nowrap;
+}   
+
+.stockSymbol{
+    color: var(--light-primary-60);
+}
+
+.valueHistoryChart{
+    margin-top: var(--margin-md);
+    width: 90%;
+    border-radius: var(--border-radius-md);
+    background-color: var(--dark-primary);
+    height: 120px;
 }

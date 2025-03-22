@@ -3,7 +3,7 @@ import axios, { AxiosPromise } from "axios";
 interface IStockData {
     symbol: string,
     name: string,
-    lastsale: string,
+    lastsale: number,
     netchange: string,
 }
 

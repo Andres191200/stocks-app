@@ -2,6 +2,11 @@
     padding: 2rem;
     box-sizing: border-box;
     width: var(--sidebar-width);
-    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom:0;
+    z-index: 100;
     background-color: var(--dark-secondary);
+    color: var(--light-primary);
 }
