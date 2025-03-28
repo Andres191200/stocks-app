@@ -25,7 +25,6 @@
   --warning-l-60: hsl(22, 100%, 60%);
   --warning-l-10: hsl(22, 100%, 10%);
 
-
   --btc-stock-color: #F7931A;
   --eth-stock-color: #444A77;
   --doge-stock-color: #D7CDAA;
@@ -47,6 +46,7 @@
 *{
   font-family: "Poppins", serif !important;
 }
+
 
 html,
 body,
@@ -175,6 +175,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 
 h1 {
   font-size: clamp(2rem, 5vw, 3rem);
