@@ -1,46 +1,50 @@
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import styles from './styles.module.scss';
 import { CSSProperties, useRef } from 'react';
-import { TImmutableStockCard } from './types/stockCard';
+import { IStockCard, TImmutableStockCard } from './types/stockCard';
 import { TImmutableMockData } from './types/data';
 import { CalculateMinValueInArray } from './utils/minValue';
 import { CalculateMaxValueInArray } from './utils/maxValue';
+import Image from 'next/image';
+import { useStocksStore } from '../store/store';
+import { IStockData } from '../actions/getStocksData';
 
 function checkLineColor(data: TImmutableMockData[]) : string{
-    return data[0].value > data[data.length - 1].value ? '#a00' : '#0a0' 
+    return data[0].lastsale > data[data.length - 1].lastsale ? '#a00' : '#0a0' 
 }
 
-export default function StockCard({ name, symbol, value, valueHistory = [] }: TImmutableStockCard){
+export default function StockCard({stock}: {stock: IStockData}){
+    const {addFavourite} = useStocksStore();
     const mockData:TImmutableMockData[] = [
-        {name: '06:00', value: 355.3}, 
-        {name: '07:00', value: 335.3}, 
-        {name: '08:00', value: 359.3}, 
-        {name: '09:00', value: 355.3}, 
-        {name: '10:00', value: 348.3}, 
-        {name: '11:00', value: 355.3}, 
-        {name: '12:00', value: 359.3}
+        {name: '06:00', lastsale: 355.3}, 
+        {name: '07:00', lastsale: 335.3}, 
+        {name: '08:00', lastsale: 359.3}, 
+        {name: '09:00', lastsale: 355.3}, 
+        {name: '10:00', lastsale: 348.3}, 
+        {name: '11:00', lastsale: 355.3}, 
+        {name: '12:00', lastsale: 359.3}
     ];
-    const tooltipContainerStyles:CSSProperties | undefined = {
+    const tooltipContainerStyles:CSSProperties = {
         backgroundColor: 'var(--dark-tertiary)',
         border: 'none',
         borderRadius: 'var(--border-radius-sm)'
     }
 
     return(
-        <div className={styles.stockCardComponent} style={{ '--tooltip-content': `"${name}"`} as React.CSSProperties}>
+        <div className={styles.stockCardComponent} style={{ '--tooltip-content': `"${stock.name}"`} as React.CSSProperties}>
             <div className={styles.stockCardHeader}>
                 <div className={styles.stockNameContainer}>
-                    <span className={styles.stockName}>{name}</span>
+                    <span className={styles.stockName}>{stock.name}</span>
                 </div>
                 <div className={styles.aditionalStockInfoContainer}>
-                    <span className={styles.stockSymbol}>{symbol}</span>
+                    <span className={styles.stockSymbol}>{stock.lastsale}</span>
                     <div className={styles.favouriteContainer}>
-                        <p>fav</p>
+                        <Image src={'/favourite.svg'} alt='favourite button' height={25} width={25} onClick={() => addFavourite(stock)}/>
                     </div>
                 </div>
             </div>
             <h4 className={styles.stockValue}>
-                {value.toString()}
+                {stock.lastsale.toString()}
             </h4>
             <div className={styles.valueHistoryChart}>
                 <LineChart width={450} height={160} data={mockData} margin={{top: 10, bottom: 10}}>
@@ -54,7 +58,7 @@ export default function StockCard({ name, symbol, value, valueHistory = [] }: TI
                         domain={[CalculateMinValueInArray(mockData), CalculateMaxValueInArray(mockData)]}
                     />
                     <Tooltip contentStyle={tooltipContainerStyles} labelStyle={{fontSize: '14px'}} itemStyle={{fontSize: '14px'}} />
-                    <Line type="monotone" dataKey="value" stroke={checkLineColor(mockData)}/>
+                    <Line type="monotone" dataKey="lastsale" stroke={checkLineColor(mockData)}/>
                 </LineChart>
             </div>
         </div>

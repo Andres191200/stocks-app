@@ -35,12 +35,12 @@ export default function StockCardSection(){
       <div>
         <StockCardGrid>
           {
-            stocks?.map((stock) => <StockCard 
-              name={stock.name}
-              symbol={stock.symbol}
-              value={stock.lastsale}
+            stocks?.map((stock) => 
+              <StockCard 
+              stock={stock}
               key={stock.symbol}
-            />)
+            />
+            )
           }
         </StockCardGrid>
       </div>

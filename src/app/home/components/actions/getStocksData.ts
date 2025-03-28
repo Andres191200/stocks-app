@@ -1,6 +1,6 @@
 import axios, { AxiosPromise } from "axios";
 
-interface IStockData {
+export interface IStockData {
     symbol: string,
     name: string,
     lastsale: number,

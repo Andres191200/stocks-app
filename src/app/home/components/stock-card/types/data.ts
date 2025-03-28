@@ -1,6 +1,6 @@
 interface IMockData{
     name: string,
-    value: number,
+    lastsale: number,
 }
 
 type TImmutableMockData = Readonly<IMockData>;
