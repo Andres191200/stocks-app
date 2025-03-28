@@ -14,6 +14,16 @@ export default function Sidebar(){
     return(
         <div className={styles.sidebarComponent}>
             <h4>Favourites: {favourites.size}</h4>
+            {
+                [...favourites].map(([key, favourite]) => {
+                    return(
+                        <div>
+                            <p>{key}</p>
+                            <p>{favourite.name}</p>
+                        </div>
+                    );
+                })
+            }
         </div>
     )
 }
