@@ -15,15 +15,11 @@ export default function Sidebar(){
     return(
         <div className={styles.sidebarComponent}>
             <h4>Favourites: {favourites.size}</h4>
+            <div className={styles.favouritesContainer}>
             {
-                [...favourites].map(([key, favourite]) => {
-                    return(
-                        <div key={key}>
-                            <Favourite favourite={favourite} key={key} />
-                        </div>
-                    );
-                })
+                [...favourites].map(([key, favourite]) => <Favourite favourite={favourite} favKey={key} key={key}/>)
             }
+            </div>
         </div>
     )
 }

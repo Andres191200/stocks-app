@@ -1,4 +1,9 @@
 .favouriteComponent{
     display: flex;
-    gap:var(--margin-sm);
+    gap:var(--margin-md);
+    padding-block:var(--padding-sm);
+
+    span:last-child{
+        font-weight: 600;
+    }
 }

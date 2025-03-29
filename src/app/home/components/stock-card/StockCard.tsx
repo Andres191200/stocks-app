@@ -8,22 +8,24 @@ import { CalculateMaxValueInArray } from './utils/maxValue';
 import Image from 'next/image';
 import { useStocksStore } from '../store/store';
 import { IStockData } from '../actions/getStocksData';
+import { mockData, mockData2 } from './utils/mockData';
 
 function checkLineColor(data: TImmutableMockData[]) : string{
     return data[0].lastsale > data[data.length - 1].lastsale ? '#a00' : '#0a0' 
 }
 
+
+// CHECKS INITIAL CHARACTER OF AN STOCK NAME JUST TO GET A DIFFERENT CHART DATA
+function checkData(stockName:string):TImmutableMockData[]{
+    if(stockName.at(0)?.toLowerCase() === 'a'){
+        return mockData;
+    }
+  return mockData2;
+}
+
 export default function StockCard({stock}: {stock: IStockData}){
     const {addFavourite} = useStocksStore();
-    const mockData:TImmutableMockData[] = [
-        {name: '06:00', lastsale: 355.3}, 
-        {name: '07:00', lastsale: 335.3}, 
-        {name: '08:00', lastsale: 359.3}, 
-        {name: '09:00', lastsale: 355.3}, 
-        {name: '10:00', lastsale: 348.3}, 
-        {name: '11:00', lastsale: 355.3}, 
-        {name: '12:00', lastsale: 359.3}
-    ];
+
     const tooltipContainerStyles:CSSProperties = {
         backgroundColor: 'var(--dark-tertiary)',
         border: 'none',
@@ -47,7 +49,7 @@ export default function StockCard({stock}: {stock: IStockData}){
                 {stock.lastsale.toString()}
             </h4>
             <div className={styles.valueHistoryChart}>
-                <LineChart width={450} height={160} data={mockData} margin={{top: 10, bottom: 10}}>
+                <LineChart width={450} height={160} data={checkData(stock.name)} margin={{top: 10, bottom: 10}}>
                     <CartesianGrid stroke='null'/>
                     <XAxis dataKey="name" fontSize={12}/>
                     <YAxis 
@@ -55,10 +57,10 @@ export default function StockCard({stock}: {stock: IStockData}){
                         dataKey="value"
                         fontSize={12} 
                         width={50}
-                        domain={[CalculateMinValueInArray(mockData), CalculateMaxValueInArray(mockData)]}
+                        domain={[CalculateMinValueInArray(checkData(stock.name)), CalculateMaxValueInArray(checkData(stock.name))]}
                     />
                     <Tooltip contentStyle={tooltipContainerStyles} labelStyle={{fontSize: '14px'}} itemStyle={{fontSize: '14px'}} />
-                    <Line type="monotone" dataKey="lastsale" stroke={checkLineColor(mockData)}/>
+                    <Line type="monotone" dataKey="lastsale" stroke={checkLineColor(checkData(stock.name))}/>
                 </LineChart>
             </div>
         </div>
