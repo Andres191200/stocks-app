@@ -2,6 +2,7 @@
 import { useStocksStore } from '@/app/home/components/store/store';
 import styles from './styles.module.scss';
 import { TImmutableStockCard } from '@/app/home/components/stock-card/types/stockCard';
+import Favourite from '../favourite/Favourite';
 
 interface stocksState{
     favourites: Map<string, TImmutableStockCard>;
@@ -17,9 +18,8 @@ export default function Sidebar(){
             {
                 [...favourites].map(([key, favourite]) => {
                     return(
-                        <div>
-                            <p>{key}</p>
-                            <p>{favourite.name}</p>
+                        <div key={key}>
+                            <Favourite favourite={favourite} key={key} />
                         </div>
                     );
                 })
