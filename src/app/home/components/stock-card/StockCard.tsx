@@ -12,7 +12,7 @@ import { mockData, mockData2 } from './utils/mockData';
 import toast, { Toaster } from 'react-hot-toast';
 
 function checkLineColor(data: TImmutableMockData[]) : string{
-    return data[0].lastsale > data[data.length - 1].lastsale ? '#a00' : '#0a0' 
+    return data[0].lastsale > data[data.length - 1].lastsale ? '#ff3636' : '#0a0' 
 }
 
 // CHECKS INITIAL CHARACTER OF AN STOCK NAME JUST TO GET A DIFFERENT CHART DATA
