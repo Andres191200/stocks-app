@@ -17,7 +17,7 @@
         filter: brightness(0) saturate(100%) invert(52%) sepia(87%) saturate(724%) hue-rotate(337deg) brightness(101%) contrast(101%);
         transition: transform 250ms ease-out;
         cursor: pointer;
-        
+
         &:hover{
             transform: scale(1.25) rotate(144deg);
         }
