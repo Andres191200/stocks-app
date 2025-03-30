@@ -10,6 +10,11 @@ import { useStocksStore } from '../store/store';
 import { IStockData } from '../actions/getStocksData';
 import { mockData, mockData2 } from './utils/mockData';
 import toast, { Toaster } from 'react-hot-toast';
+import toastOptions from '@/app/shared/utils/toastOptons';
+
+const notifyFavouriteAdded = () => toast('Favourite added!', toastOptions['FAVOURITE_ADDED']);
+const notifyFavouriteDeleted = () => toast('Favourite deleted', toastOptions['FAVOURITE_DELETED']);
+
 
 function checkLineColor(data: TImmutableMockData[]) : string{
     return data[0].lastsale > data[data.length - 1].lastsale ? '#ff3636' : '#0a0' 
@@ -23,16 +28,14 @@ function checkData(stockName:string):TImmutableMockData[]{
   return mockData2;
 }
 
-const notify = () => toast('Here is your toast.');
-
-function deleteFav(key:string, deleteFavourite:(favouriteId:string) => void) {
-    notify();
-    deleteFavourite(key);
+function addFav(stock:IStockCard, addFavourite:(stock:IStockCard) => void) {
+    notifyFavouriteAdded();
+    addFavourite(stock);
 }
 
-function addFav(stock:IStockCard, addFavourite:(stock:IStockCard) => void) {
-    notify();
-    addFavourite(stock);
+function deleteFav(key:string, deleteFavourite:(favouriteId:string) => void) {
+    notifyFavouriteDeleted();
+    deleteFavourite(key);
 }
 
 export default function StockCard({stock}: {stock: IStockData}){
