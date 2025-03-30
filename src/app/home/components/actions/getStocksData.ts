@@ -5,7 +5,6 @@ export interface IStockData {
     name: string,
     lastsale: number,
     netchange: string,
-    favourite: boolean,
 }
 
 export default async function getStocksData(): AxiosPromise<{body: IStockData[]}> {

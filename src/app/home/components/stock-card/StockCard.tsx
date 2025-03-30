@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useStocksStore } from '../store/store';
 import { IStockData } from '../actions/getStocksData';
 import { mockData, mockData2 } from './utils/mockData';
+import toast, { Toaster } from 'react-hot-toast';
 
 function checkLineColor(data: TImmutableMockData[]) : string{
     return data[0].lastsale > data[data.length - 1].lastsale ? '#a00' : '#0a0' 
@@ -22,6 +23,18 @@ function checkData(stockName:string):TImmutableMockData[]{
   return mockData2;
 }
 
+const notify = () => toast('Here is your toast.');
+
+function deleteFav(key:string, deleteFavourite:(favouriteId:string) => void) {
+    notify();
+    deleteFavourite(key);
+}
+
+function addFav(stock:IStockCard, addFavourite:(stock:IStockCard) => void) {
+    notify();
+    addFavourite(stock);
+}
+
 export default function StockCard({stock}: {stock: IStockData}){
     const {addFavourite, deleteFavourite, favourites} = useStocksStore();
 
@@ -31,12 +44,9 @@ export default function StockCard({stock}: {stock: IStockData}){
         borderRadius: 'var(--border-radius-sm)'
     }
 
-    useEffect(() => {
-
-    },[])
-
     return(
         <div className={styles.stockCardComponent} style={{ '--tooltip-content': `"${stock.name}"`} as React.CSSProperties}>
+            <Toaster />
             <div className={styles.stockCardHeader}>
                 <div className={styles.stockNameContainer}>
                     <span className={styles.stockName}>{stock.name}</span>
@@ -46,8 +56,8 @@ export default function StockCard({stock}: {stock: IStockData}){
                     <div className={styles.favouriteContainer}>
                         {
                             favourites.has(stock.symbol) 
-                            ? <Image src={'/favourite-filled.svg'} alt='favourite button' height={25} width={25} onClick={() => deleteFavourite(stock.symbol)}/>
-                            : <Image src={'/favourite.svg'} alt='favourite button' height={25} width={25} onClick={() => addFavourite(stock)}/>
+                            ? <Image src={'/favourite-filled.svg'} alt='favourite button' height={25} width={25} onClick={() => deleteFav(stock.symbol, deleteFavourite)}/>
+                            : <Image src={'/favourite.svg'} alt='favourite button' height={25} width={25} onClick={() => addFav(stock, addFavourite)}/>
                         }
                     </div>
                 </div>
