@@ -1,5 +1,5 @@
 .sidebarComponent{
-    padding: 2rem;
+    padding: var(--padding-lg);
     box-sizing: border-box;
     width: var(--sidebar-width);
     position: absolute;
@@ -9,8 +9,17 @@
     z-index: 100;
     background-color: var(--dark-secondary);
     color: var(--light-primary);
+
+    h4{
+        font-weight: 600;
+        line-height: 150%;
+        border-bottom: 1px solid var(--light-primary);
+    }
 }
 
 .favouritesContainer{
-    margin-top:var(--margin-lg);
+    display: flex;
+    flex-direction: column;
+    gap:var(--padding-lg);
+    margin-top:var(--margin-md);
 }
