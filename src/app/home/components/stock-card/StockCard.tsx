@@ -69,7 +69,7 @@ export default function StockCard({stock}: {stock: IStockData}){
                 {stock.lastsale.toString()}
             </h4>
             <div className={styles.valueHistoryChart}>
-                <LineChart width={450} height={160} data={checkData(stock.name)} margin={{top: 10, bottom: 10}}>
+                <LineChart width={420} height={160} data={checkData(stock.name)} margin={{top: 10, bottom: 10}}>
                     <CartesianGrid stroke='null'/>
                     <XAxis dataKey="name" fontSize={12}/>
                     <YAxis 
