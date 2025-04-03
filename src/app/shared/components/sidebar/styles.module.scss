@@ -23,3 +23,17 @@
     gap:var(--padding-lg);
     margin-top:var(--margin-md);
 }
+
+.emptyFavouritesListContainer{
+    display: flex;
+    align-items: center;
+    gap:var(--margin-sm);
+    
+    p{
+        color:var(--warning);
+    }
+
+    img{
+        filter: var(--black-to-orange-filter);
+    }
+}

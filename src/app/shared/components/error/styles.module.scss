@@ -17,7 +17,7 @@
     backdrop-filter: blur(100px);
 
     img{
-        filter: invert(75%) sepia(31%) saturate(5487%) hue-rotate(330deg) brightness(101%) contrast(101%);
+        filter: var(--black-to-orange-filter);
     }
 }
 
