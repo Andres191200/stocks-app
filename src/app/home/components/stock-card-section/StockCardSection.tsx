@@ -5,6 +5,7 @@ import Skeleton from "../skeleton/Skeleton";
 import getStocksData from "../actions/getStocksData";
 import Error from "@/app/shared/components/error/error";
 import IError from "@/app/shared/types/IError";
+import SearchBar from "@/app/shared/components/search-bar/SearchBar";
 
 export default function StockCardSection(){
     const { isPending, error, data: stocks } = useQuery({
@@ -33,6 +34,7 @@ export default function StockCardSection(){
 
     return(
       <div>
+        <SearchBar />
         <StockCardGrid>
           {
             stocks?.map((stock) => 

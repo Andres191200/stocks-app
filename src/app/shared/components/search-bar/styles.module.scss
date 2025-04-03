@@ -1,0 +1,23 @@
+.searchBarComponent{
+    position:relative;
+    margin-bottom:var(--margin-md);
+    
+    input{
+        width: 100%;
+        box-sizing: border-box;
+        border:1px solid var(--light-primary-60);
+        background-color: transparent;
+        border-radius: var(--border-radius-lg);
+        padding: var(--padding-sm) var(--padding-sm) var(--padding-sm) 40px;
+        font-size: 1.1rem;
+        color:var(--light-primary);
+
+        &+img{
+            position:absolute;
+            filter: var(--black-to-white-filter);
+            top:50%;
+            transform:translateY(-50%);
+            left: 5px;
+        }
+    }
+}
