@@ -19,7 +19,7 @@ export default function Sidebar(){
             {
                 favourites.size !== 0
                 ? [...favourites].map(([key, favourite]) => <Favourite favourite={favourite} favKey={key} key={key}/>)
-                : <p>You didn't add a favourite yet</p>
+                : <p>You haven't added any favourites yet</p>
             }
             </div>
         </div>
