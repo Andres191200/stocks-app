@@ -3,6 +3,7 @@ import { useStocksStore } from '@/app/home/components/store/store';
 import styles from './styles.module.scss';
 import { TImmutableStockCard } from '@/app/home/components/stock-card/types/stockCard';
 import Favourite from '../favourite/Favourite';
+import Image from 'next/image';
 
 interface stocksState{
     favourites: Map<string, TImmutableStockCard>;
@@ -19,7 +20,12 @@ export default function Sidebar(){
             {
                 favourites.size !== 0
                 ? [...favourites].map(([key, favourite]) => <Favourite favourite={favourite} favKey={key} key={key}/>)
-                : <p>You haven't added any favourites yet</p>
+                : (
+                    <div className={styles.emptyFavouritesListContainer}>
+                      <Image src={'/warning.svg'} alt="warning icon" height={25} width={25} />
+                      <p>No favourites added</p>
+                    </div>
+                )
             }
             </div>
         </div>
