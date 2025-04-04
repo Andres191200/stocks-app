@@ -6,7 +6,7 @@ import { TImmutableMockData } from './types/data';
 import { CalculateMinValueInArray } from './utils/minValue';
 import { CalculateMaxValueInArray } from './utils/maxValue';
 import Image from 'next/image';
-import { useStocksStore } from '../store/store';
+import { useStocksStore } from '../../store/store';
 import { IStockData } from '../../actions/getStocksData';
 import { mockData, mockData2 } from './utils/mockData';
 import toast, { Toaster } from 'react-hot-toast';

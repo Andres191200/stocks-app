@@ -1,5 +1,5 @@
 'use client';
-import { useStocksStore } from '@/app/home/components/store/store';
+import { useStocksStore } from '@/app/home/store/store';
 import styles from './styles.module.scss';
 import { TImmutableStockCard } from '@/app/home/components/stock-card/types/stockCard';
 import Favourite from '../favourite/Favourite';
