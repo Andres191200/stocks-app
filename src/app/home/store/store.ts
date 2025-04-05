@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { TImmutableStockCard } from "../stock-card/types/stockCard";
+import { TImmutableStockCard } from "../components/stock-card/types/stockCard";
 
 interface IStocksState{
     favourites: Map<string, TImmutableStockCard>;

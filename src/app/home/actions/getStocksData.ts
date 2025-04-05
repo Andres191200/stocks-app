@@ -23,7 +23,7 @@ export default async function getStocksData():Promise<IStockData[]>{
 function fetchData(): AxiosPromise<{body: IStockData[]}> {
     return axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/v2/markets/tickers?page=1&type=STOCKS`,{headers: {
-        'x-rapidapi-key': `${process.env.NEXT_PUBLIC_API_KEY}`
+        'x-rapidapi-key': process.env.NEXT_PUBLIC_API_KEY
       }}
     );
 }
