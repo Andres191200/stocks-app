@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { RefetchOptions, useQuery } from "@tanstack/react-query";
 import StockCardGrid from "../stock-card-grid/StockCardGrid";
 import StockCard from "../stock-card/StockCard";
 import Skeleton from "../skeleton/Skeleton";
@@ -6,34 +6,31 @@ import Error from "@/app/shared/components/error/error";
 import IError from "@/app/shared/types/IError";
 import SearchBar from "@/app/shared/components/search-bar/SearchBar";
 import getStocksData from "../../actions/getStocksData";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import getStocksDataByName from "../../actions/getStocksDataByName";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function StockCardSection(){
   const [search, setSearch] = useState<string>('');
 
-  useEffect(() => {
-    //TO DO: HERE THE STATE IS UPDATING CORRECTLY BUT INCORRECTLY WHEN CALLS FETCHSTOCKSBYNAME.
-    console.log('search updated: ', search);
-    if(search.trim().length > 0){
-      fetchStocksByName();
-    }
-  },[search]);
+  const filterStocks = useDebouncedCallback((query:string) => {
+    setSearch(query);
+  }, 1000);
   
   const { isPending, error: stocksError, data: stocks } = useQuery({
     queryKey: ["stocksData"],
     queryFn: getStocksData,
   });
 
-  const { isFetching, error: searchError, data: filteredStocks, refetch: fetchStocksByName } = useQuery({
-    queryKey: ["stocksData", search],
+  const { 
+          isFetching, 
+          error: searchError,
+          data: filteredStocks
+        } = useQuery({
+    queryKey: ["stocksDataByName", search],
     queryFn: () => getStocksDataByName(search),
-    enabled: false,
+    enabled: !!search.trim(),
   });
-
-  const filterStocks = useCallback((query: string) => {
-    setSearch(query);
-  },[fetchStocksByName]);
   
   if(isPending || isFetching){
       return <Skeleton />

@@ -1,6 +1,5 @@
 import IError from "@/app/shared/types/IError";
 import axios from "axios";
-import { headers } from "next/headers";
 
 export default async function getStocksDataByName(query:string){
     console.log('FETCHING... QUERY: ', query);
