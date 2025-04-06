@@ -1,20 +1,20 @@
 .stockCardComponent{
+    display: flex;
+    flex-direction: column;
+    gap:var(--margin-sm);
     background-color: var(--dark-secondary);
     border-radius: var(--default-border-radius);
     padding:var(--padding-md) var(--padding-md) var(--padding-2md) var(--padding-md);
     color: var(--light-primary);
     border: 1px solid var(--dark-tertiary);
-
-
-    h2{
-        color: var(--light-primary);
-        font-weight: 600;
-        text-transform: uppercase;
-    }
 }
 
 .favouriteContainer{
+    position:relative;
     img{
+        position:absolute;
+        top:-2px;
+        right:0;
         filter:var(--black-to-orange-filter);
         transition: transform 250ms ease-out;
         cursor: pointer;
@@ -41,20 +41,34 @@
 }
 
 .stockValueContainer{
+    margin-top:var(--margin-sm);
     display: flex;
     align-items: center;
     gap:var(--margin-sm);
-    margin-bottom: var(--margin-lg);
+
+    .stockValue{
+        font-weight: 600;
+    }
 }
 
-.stockValue{
-    font-weight: 600;
+.stockSymbolContainer{
+    display: block;
+
+    .stockSymbol{
+        font-weight: 600 !important;
+    }
 }
 
 .stockNameContainer{
     max-width: 65%;
     overflow-x: hidden;
     text-overflow: ellipsis;
+    overflow-y:hidden;
+
+    .stockName{
+        text-wrap: nowrap;
+        color:var(--light-primary-60);
+    }   
 }
 
 .stockNameContainer::after{
@@ -83,23 +97,10 @@
 .aditionalStockInfoContainer{
     display: flex;
     gap: var(--margin-sm);
-
-    span{
-        font-weight: 600;
-    }
-}
-
-.stockName{
-    font-weight: 600;
-    text-wrap: nowrap;
-}   
-
-.stockSymbol{
-    color: var(--light-primary-60);
 }
 
 .valueHistoryChart{
-    margin-top: var(--margin-md);
+    margin-top: var(--margin-sm);
     width: 90%;
     border-radius: var(--border-radius-md);
     background-color: var(--dark-primary);
