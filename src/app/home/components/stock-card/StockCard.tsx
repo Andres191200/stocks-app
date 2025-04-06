@@ -39,7 +39,6 @@ function deleteFav(key: string, deleteFavourite: (favouriteId: string) => void) 
 }
 
 export default function StockCard({ stock }: { stock: IStockData }) {
-    console.log(stock);
     const { addFavourite, deleteFavourite, favourites } = useStocksStore();
 
     const tooltipContainerStyles: CSSProperties = {
