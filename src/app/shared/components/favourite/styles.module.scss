@@ -8,17 +8,17 @@
     transform: translateY(0);
     opacity: 1;
     transition: transform 250ms ease-out, opacity 250ms ease-out;
+
+    @starting-style{
+        transform:translateY(-20px);
+        opacity: 0;
+    }
 }
 
 .favouriteContainer{
     display: flex;
     justify-content: space-between;
     gap: var(--margin-md);
-
-    @starting-style{
-        transform:translateY(-20px);
-        opacity: 0;
-    }
 
     span:first-child, span:last-child{
         line-height: 150%;
