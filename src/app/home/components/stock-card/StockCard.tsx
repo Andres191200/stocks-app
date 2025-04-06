@@ -39,6 +39,7 @@ function deleteFav(key:string, deleteFavourite:(favouriteId:string) => void) {
 }
 
 export default function StockCard({stock}: {stock: IStockData}){
+    console.log(stock);
     const {addFavourite, deleteFavourite, favourites} = useStocksStore();
 
     const tooltipContainerStyles:CSSProperties = {
@@ -55,6 +56,7 @@ export default function StockCard({stock}: {stock: IStockData}){
                     <span className={styles.stockName}>{stock.name}</span>
                 </div>
                 <div className={styles.aditionalStockInfoContainer}>
+                    <span>{stock.symbol}</span>
                     <div className={styles.favouriteContainer}>
                         {
                             favourites.has(stock.symbol) 
@@ -64,9 +66,11 @@ export default function StockCard({stock}: {stock: IStockData}){
                     </div>
                 </div>
             </div>
-            <h4 className={styles.stockValue}>
-                {stock.lastsale.toString()}
-            </h4>
+            <div className={styles.stockValueContainer}>
+                <h4 className={styles.stockValue}>
+                    {stock.lastsale.toString()}
+                </h4>
+            </div>
             <div className={styles.valueHistoryChart}>
                 <LineChart width={420} height={160} data={checkData(stock.name)} margin={{top: 10, bottom: 10}}>
                     <CartesianGrid stroke='null'/>

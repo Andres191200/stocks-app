@@ -40,9 +40,14 @@
     }
 }
 
+.stockValueContainer{
+    display: flex;
+    align-items: center;
+    gap:var(--margin-sm);
+    margin-bottom: var(--margin-lg);
+}
+
 .stockValue{
-    display: block;
-    margin-bottom:var(--margin-lg);
     font-weight: 600;
 }
 
@@ -78,9 +83,11 @@
 .aditionalStockInfoContainer{
     display: flex;
     gap: var(--margin-sm);
-}
 
-.stockNameContainer
+    span{
+        font-weight: 600;
+    }
+}
 
 .stockName{
     font-weight: 600;
