@@ -55,7 +55,6 @@ export default function StockCard({stock}: {stock: IStockData}){
                     <span className={styles.stockName}>{stock.name}</span>
                 </div>
                 <div className={styles.aditionalStockInfoContainer}>
-                    <span className={styles.stockSymbol}>{stock.lastsale}</span>
                     <div className={styles.favouriteContainer}>
                         {
                             favourites.has(stock.symbol) 
