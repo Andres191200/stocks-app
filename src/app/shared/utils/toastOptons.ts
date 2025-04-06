@@ -5,14 +5,18 @@ const toastOptions = {
      icon:'😊',
      style: {
         backgroundColor: 'var(--dark-tertiary)',
-        color: 'var(--light-primary)'
+        color: 'var(--light-primary)',
+        boxShadow: 'none',
+        margin: '10px',
      }
-   } as ToastOptions,
+   },
    'FAVOURITE_DELETED': {
      icon: '🥺',
      style: {
         backgroundColor: 'var(--dark-tertiary)',
-        color: 'var(--light-primary)'
+        color: 'var(--light-primary)',
+        boxShadow: 'none',
+        margin: '10px',
      }
    } 
 }

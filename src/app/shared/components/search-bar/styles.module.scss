@@ -5,9 +5,9 @@
     input{
         width: 100%;
         box-sizing: border-box;
-        border:1px solid var(--light-primary-60);
+        border:1px solid var(--dark-tertiary);
         background-color: transparent;
-        border-radius: var(--border-radius-lg);
+        border-radius: var(--default-border-radius);
         padding: var(--padding-sm) var(--padding-sm) var(--padding-sm) 40px;
         font-size: 1.1rem;
         color:var(--light-primary);
@@ -17,7 +17,7 @@
             filter: var(--black-to-white-filter);
             top:50%;
             transform:translateY(-50%);
-            left: 5px;
+            left: 8px;
         }
     }
 }

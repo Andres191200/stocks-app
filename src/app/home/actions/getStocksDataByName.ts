@@ -2,7 +2,6 @@ import IError from "@/app/shared/types/IError";
 import axios from "axios";
 
 export default async function getStocksDataByName(query:string){
-    console.log('FETCHING... QUERY: ', query);
     try{
         const response = await fetchData(query);
         return response.data.body;

@@ -1,7 +1,7 @@
 .homePageScreen{
     width: 100%;
     margin-left: var(--sidebar-width);
-    background: radial-gradient(circle, hsl(244, 19%, 25%) 0%, hsl(244, 19%, 14%) 50%, hsl(244, 19%, 8%) 100%);
+    background: var(--dark-primary);
     padding: 4rem;
     box-sizing: border-box;
 }
