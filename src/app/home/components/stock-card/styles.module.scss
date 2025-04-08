@@ -1,7 +1,7 @@
 .stockCardComponent{
     display: flex;
-    flex-direction: column;
     position: relative;
+    flex-direction: column;
     gap:var(--margin-sm);
     background-color: var(--dark-secondary);
     border-radius: var(--default-border-radius);
@@ -29,7 +29,6 @@
 .stockCardHeader{
     display: flex;
     line-height: 135%;
-    position:relative;  
     justify-content: space-between;
     font-weight: 400;
 }
@@ -69,30 +68,38 @@
     .stockName{
         text-wrap: nowrap;
         color:var(--light-primary-60);
+        width: 100%;
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &::after{
+            content: var(--tooltip-content);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 250ms ease;
+            transition-behavior: allow-discrete;
+            position:absolute;
+            margin: 0;
+            top:0;
+            left:0;
+            width: auto;
+            line-height: 135%;
+            text-wrap: wrap;
+            border-radius: var(--border-radius-md);
+            z-index: 10;
+            padding:var(--padding-sm);
+            pointer-events: none;
+            background-color: var(--dark-tertiary);
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        
+            @starting-style{
+                pointer-events: none;
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+        }
     }   
-}
-
-.stockNameContainer::after{
-    content: var(--tooltip-content);
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 250ms ease;
-    transition-behavior: allow-discrete;
-    position:absolute;
-    margin: 0;
-    bottom: 200%;
-    left: 20px;
-    border-radius: var(--border-radius-md);
-    z-index: 10;
-    padding:var(--padding-sm);
-    pointer-events: none;
-    background-color: var(--dark-tertiary);
-
-    @starting-style{
-        pointer-events: none;
-        transform: translateY(-20px);
-        opacity: 0;
-    }
 }
 
 .aditionalStockInfoContainer{
