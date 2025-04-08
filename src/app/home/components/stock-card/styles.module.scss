@@ -1,6 +1,7 @@
 .stockCardComponent{
     display: flex;
     flex-direction: column;
+    position: relative;
     gap:var(--margin-sm);
     background-color: var(--dark-secondary);
     border-radius: var(--default-border-radius);
@@ -31,13 +32,6 @@
     position:relative;  
     justify-content: space-between;
     font-weight: 400;
-    &:hover{
-        .stockNameContainer::after{
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 }
 
 .stockValueContainer{
@@ -64,6 +58,13 @@
     overflow-x: hidden;
     text-overflow: ellipsis;
     overflow-y:hidden;
+    &:hover{
+        .stockName::after{
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
     .stockName{
         text-wrap: nowrap;
