@@ -6,10 +6,9 @@ import Error from "@/app/shared/components/error/error";
 import IError from "@/app/shared/types/IError";
 import SearchBar from "@/app/shared/components/search-bar/SearchBar";
 import getStocksData, { IStockData } from "../../actions/getStocksData";
-import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useSearchParams } from "react-router";
-import { IStockCard } from "../stock-card/types/stockCard";
+import styles from './styles.module.scss';
 
 export default function StockCardSection(){
   const [params, setSearchParams] = useSearchParams();
@@ -43,16 +42,16 @@ export default function StockCardSection(){
     return <Error code={_error.code} errorMessage={_error.errorMessage} />
   }
   return(
-    <div>
+    <div className={styles.stockCardSectionComponent}>
       <SearchBar onChange={(query) => filterStocks(query)}/>
       <StockCardGrid>
         {
-          formatStocks()?.map((stock) => 
+          formatStocks()!.length > 0 ? formatStocks()!.map((stock) => 
             <StockCard 
             stock={stock}
             key={stock.symbol}
           />
-          )
+          ) : <p className={styles.noMatchStocks}>No stocks found</p>
         }
       </StockCardGrid>
     </div>
