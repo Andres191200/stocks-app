@@ -20,7 +20,6 @@ export default function StockCardSection(){
   });
 
   const handleChange = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
-    console.log(query.length);
     if(query.length > 0){
       setSearchParams((prevParams) => {
         return {...prevParams, [type]: query}
