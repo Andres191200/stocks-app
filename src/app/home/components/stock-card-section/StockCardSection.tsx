@@ -19,7 +19,6 @@ export default function StockCardSection(){
   });
 
   const handleChange = useDebouncedCallback((query:string) => {
-    console.log('query: ', query);
     setSearchParams((prevParams) => {
       return {...prevParams, search: query}
     })
