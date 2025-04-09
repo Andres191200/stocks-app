@@ -18,7 +18,8 @@ export default function StockCardSection(){
     queryFn: getStocksData,
   });
 
-  const filterStocks = useDebouncedCallback((query:string) => {
+  const handleChange = useDebouncedCallback((query:string) => {
+    console.log('query: ', query);
     setSearchParams((prevParams) => {
       return {...prevParams, search: query}
     })
@@ -27,8 +28,7 @@ export default function StockCardSection(){
   function formatStocks():IStockData[] | undefined{
     const query = params.get('search');
     if((query?.trim().length)! > 0){
-      // console.log('search: ', params.get('search'))
-      return stocks?.filter((stock) => stock.name.toLowerCase().includes(query!));
+      return stocks?.filter((stock) => stock.name.toLowerCase().includes(query!.toLowerCase()));
     }
     return stocks;
   }
@@ -43,7 +43,7 @@ export default function StockCardSection(){
   }
   return(
     <div className={styles.stockCardSectionComponent}>
-      <SearchBar onChange={(query) => filterStocks(query)}/>
+      <SearchBar onChange={(query) => handleChange(query)}/>
       <StockCardGrid>
         {
           formatStocks()!.length > 0 ? formatStocks()!.map((stock) => 
