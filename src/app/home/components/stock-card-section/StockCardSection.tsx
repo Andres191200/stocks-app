@@ -9,6 +9,7 @@ import getStocksData, { IStockData } from "../../actions/getStocksData";
 import { useDebouncedCallback } from "use-debounce";
 import { useSearchParams } from "react-router";
 import styles from './styles.module.scss';
+import FILTER_TYPES from "@/app/shared/utils/filter-types";
 
 export default function StockCardSection(){
   const [params, setSearchParams] = useSearchParams();
@@ -18,14 +19,21 @@ export default function StockCardSection(){
     queryFn: getStocksData,
   });
 
-  const handleChange = useDebouncedCallback((query:string) => {
-    setSearchParams((prevParams) => {
-      return {...prevParams, search: query}
-    })
+  const handleChange = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
+    if(query.length > 0){
+      setSearchParams((prevParams) => {
+        return {...prevParams, [type]: query}
+      });
+    }
+    else{
+      const formattedSearchParams = new URLSearchParams(params);
+      formattedSearchParams.delete(type);
+      setSearchParams(formattedSearchParams);
+    }
   }, 1000);
 
   function formatStocks():IStockData[] | undefined{
-    const query = params.get('search');
+    const query = params.get(FILTER_TYPES.SEARCH);
     if((query?.trim().length)! > 0){
       return stocks?.filter((stock) => stock.name.toLowerCase().includes(query!.toLowerCase()));
     }
@@ -42,7 +50,7 @@ export default function StockCardSection(){
   }
   return(
     <div className={styles.stockCardSectionComponent}>
-      <SearchBar onChange={(query) => handleChange(query)}/>
+      <SearchBar onChange={(query) => handleChange(query, FILTER_TYPES.SEARCH)}/>
       <StockCardGrid>
         {
           formatStocks()!.length > 0 ? formatStocks()!.map((stock) => 
