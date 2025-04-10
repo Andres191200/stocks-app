@@ -11,6 +11,7 @@ import { IStockData } from '../../actions/getStocksData';
 import { mockData, mockData2 } from './utils/mockData';
 import toast, { Toaster } from 'react-hot-toast';
 import toastOptions from '@/app/shared/utils/toastOptons';
+import gsap from 'gsap';
 
 const notifyFavouriteAdded = () => toast('Favourite added!', toastOptions['FAVOURITE_ADDED']);
 const notifyFavouriteDeleted = () => toast('Favourite deleted', toastOptions['FAVOURITE_DELETED']);
@@ -40,6 +41,21 @@ function deleteFav(key: string, deleteFavourite: (favouriteId: string) => void) 
 
 export default function StockCard({ stock }: { stock: IStockData }) {
     const { addFavourite, deleteFavourite, favourites } = useStocksStore();
+    const cardRef = useRef(null);
+    
+    useEffect(() => {
+
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                cardRef.current,
+                {opacity: 0, y: 50},
+                {opacity: 1, y: 0, duration: 1, ease: "power4.out"}
+            )
+        }, cardRef);
+
+        return () => ctx.revert();
+
+    }, [])
 
     const tooltipContainerStyles: CSSProperties = {
         backgroundColor: 'var(--dark-tertiary)',
@@ -48,7 +64,7 @@ export default function StockCard({ stock }: { stock: IStockData }) {
     }
 
     return (
-        <div className={styles.stockCardComponent} style={{ '--tooltip-content': `"${stock.name}"` } as React.CSSProperties}>
+        <div className={styles.stockCardComponent} style={{ '--tooltip-content': `"${stock.name}"` } as React.CSSProperties} ref={cardRef}>
             <Toaster />
             <div className={styles.stockCardHeader}>
                 <div className={styles.stockSymbolContainer}>
