@@ -19,7 +19,6 @@
     display: flex;
     justify-content: space-between;
     gap: var(--margin-md);
-
     span:first-child, span:last-child{
         line-height: 150%;
     }
@@ -34,6 +33,13 @@
 }
 
 .deleteFavouriteContainer{
+    button{
+        background-color: transparent;
+        padding:0;
+        margin-left: auto;
+        border:none;
+        display: block;
+    }
     img{
         cursor:pointer;
         filter:var(--black-to-error-filter);
