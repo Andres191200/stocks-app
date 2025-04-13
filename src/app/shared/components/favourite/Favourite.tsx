@@ -1,40 +1,61 @@
-import { TImmutableStockCard } from '@/app/home/components/stock-card/types/stockCard';
-import styles from './styles.module.scss';
-import Image from 'next/image';
-import { useStore } from 'zustand';
-import { useStocksStore } from '@/app/home/store/store';
-import toast, { Toaster } from 'react-hot-toast';
-import toastOptions from '../../utils/toastOptons';
-import { useEffect, useRef } from 'react';
+import { TImmutableStockCard } from "@/app/home/components/stock-card/types/stockCard";
+import styles from "./styles.module.scss";
+import Image from "next/image";
+import { useStore } from "zustand";
+import { useStocksStore } from "@/app/home/store/store";
+import toast, { Toaster } from "react-hot-toast";
+import toastOptions from "../../utils/toastOptons";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-function notifyFavouriteDeleted(){
-    toast("Favourite deleted!", toastOptions["FAVOURITE_DELETED"]);
+function notifyFavouriteDeleted() {
+  toast("Favourite deleted!", toastOptions["FAVOURITE_DELETED"]);
 }
 
-function deleteFav(favKey:string, deleteFavourite:(key:string) => void):void {
-    notifyFavouriteDeleted();
-    deleteFavourite(favKey);
+function deleteFav(
+  favKey: string,
+  deleteFavourite: (key: string) => void
+): void {
+  notifyFavouriteDeleted();
+  deleteFavourite(favKey);
 }
 
-export default function Favourite({favourite, favKey}: {favourite: TImmutableStockCard, favKey:string}){
-    const {deleteFavourite} = useStocksStore();
-    const favouriteRef = useRef<HTMLDivElement>(null);
+export default function Favourite({
+  favourite,
+  favKey,
+}: {
+  favourite: TImmutableStockCard;
+  favKey: string;
+}) {
+  const { deleteFavourite } = useStocksStore();
+  const favouriteRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        var ctx = gsap.context()
-    },[])
+  useEffect(() => {
+    var ctx = gsap.context(() => {
+      gsap.fromTo(
+        favouriteRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power4.out" }
+      );
+    }, favouriteRef);
 
-    return(
-        <div className={styles.favouriteComponent} ref={favouriteRef}>
-            <div className={styles.favouriteContainer}>
-                <span>{favourite.name}</span>
-                <span>{favKey}</span>
-            </div>
-            <div className={styles.deleteFavouriteContainer}>
-                <button type="button" onClick={() => deleteFav(favKey, deleteFavourite)}>
-                    <Image src={'/trash.svg'} alt='delete fav' height={25} width={25} />
-                </button>
-            </div>
-        </div>
-    )
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div className={styles.favouriteComponent} ref={favouriteRef}>
+      <div className={styles.favouriteContainer}>
+        <span>{favourite.name}</span>
+        <span>{favKey}</span>
+      </div>
+      <div className={styles.deleteFavouriteContainer}>
+        <button
+          type="button"
+          onClick={() => deleteFav(favKey, deleteFavourite)}
+        >
+          <Image src={"/trash.svg"} alt="delete fav" height={25} width={25} />
+        </button>
+      </div>
+    </div>
+  );
 }
