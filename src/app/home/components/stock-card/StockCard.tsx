@@ -122,7 +122,7 @@ export default function StockCard({ stock }: { stock: IStockData }) {
             data={checkData(stock.name)}
             margin={{ top: 10, bottom: 10 }}
           >
-            <CartesianGrid stroke="null" />
+            <CartesianGrid stroke="null"/>
             <XAxis dataKey="name" fontSize={12} />
             <YAxis
               orientation="right"

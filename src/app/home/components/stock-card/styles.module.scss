@@ -1,5 +1,6 @@
 .stockCardComponent{
     display: flex;
+    width: 430px;
     position: relative;
     flex-direction: column;
     gap:var(--margin-sm);
@@ -8,6 +9,14 @@
     padding:var(--padding-md) var(--padding-md) var(--padding-2md) var(--padding-md);
     color: var(--light-primary);
     border: 1px solid var(--dark-tertiary);
+}
+
+.valueHistoryChart{
+    // margin-top: var(--margin-sm);
+    // width: 85%;
+    // border-radius: var(--border-radius-md);
+    // background-color: var(--dark-primary);
+    // height: 120px;
 }
 
 .favouriteContainer{
@@ -107,10 +116,3 @@
     gap: var(--margin-sm);
 }
 
-.valueHistoryChart{
-    margin-top: var(--margin-sm);
-    width: 90%;
-    border-radius: var(--border-radius-md);
-    background-color: var(--dark-primary);
-    height: 120px;
-}
