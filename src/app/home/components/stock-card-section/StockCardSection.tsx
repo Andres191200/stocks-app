@@ -9,7 +9,8 @@ import getStocksData, { IStockData } from "../../actions/getStocksData";
 import { useDebouncedCallback } from "use-debounce";
 import { useSearchParams } from "react-router";
 import styles from './styles.module.scss';
-import FILTER_TYPES from "@/app/shared/utils/filter-types";
+import {FILTER_TYPES, ORDER_TYPES} from "@/app/shared/utils/filter-types";
+import Filters from "../filters/Filters";
 
 export default function StockCardSection(){
   const [params, setSearchParams] = useSearchParams();
@@ -19,23 +20,19 @@ export default function StockCardSection(){
     queryFn: getStocksData,
   });
 
-  const handleChange = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
-    if(query.length > 0){
-      setSearchParams((prevParams) => {
-        return {...prevParams, [type]: query}
-      });
-    }
-    else{
-      const formattedSearchParams = new URLSearchParams(params);
-      formattedSearchParams.delete(type);
-      setSearchParams(formattedSearchParams);
-    }
-  }, 1000);
-
   function formatStocks():IStockData[] | undefined{
     const query = params.get(FILTER_TYPES.SEARCH);
+    const order = params.get(FILTER_TYPES.ORDER);
     if((query?.trim().length)! > 0){
       return stocks?.filter((stock) => stock.name.toLowerCase().includes(query!.toLowerCase()));
+    }
+    if(order){
+      if(order === ORDER_TYPES.ASC){
+        return stocks?.sort((a,b) => a.name.localeCompare(b.name));
+      }
+      else{
+        return stocks?.sort((a,b) => b.name.localeCompare(a.name));
+      }
     }
     return stocks;
   }
@@ -50,7 +47,7 @@ export default function StockCardSection(){
   }
   return(
     <div className={styles.stockCardSectionComponent}>
-      <SearchBar onChange={(query) => handleChange(query, FILTER_TYPES.SEARCH)}/>
+      <Filters />
       <StockCardGrid>
         {
           formatStocks()!.length > 0 ? formatStocks()!.map((stock) => 
