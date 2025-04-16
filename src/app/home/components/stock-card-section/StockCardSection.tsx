@@ -9,7 +9,7 @@ import getStocksData, { IStockData } from "../../actions/getStocksData";
 import { useDebouncedCallback } from "use-debounce";
 import { useSearchParams } from "react-router";
 import styles from './styles.module.scss';
-import {FILTER_TYPES, ORDER_TYPES} from "@/app/shared/utils/filter-types";
+import {FILTER_TYPES, SORT_TYPES} from "@/app/shared/utils/filter-types";
 import Filters from "../filters/Filters";
 
 export default function StockCardSection(){
@@ -27,7 +27,7 @@ export default function StockCardSection(){
       return stocks?.filter((stock) => stock.name.toLowerCase().includes(query!.toLowerCase()));
     }
     if(order){
-      if(order === ORDER_TYPES.ASC){
+      if(order === SORT_TYPES.ASC){
         return stocks?.sort((a,b) => a.name.localeCompare(b.name));
       }
       else{
