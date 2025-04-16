@@ -1,8 +1,9 @@
 import SearchBar from '@/app/shared/components/search-bar/SearchBar';
 import styles from './styles.module.scss';
-import { FILTER_TYPES, ORDER_TYPES } from '@/app/shared/utils/filter-types';
+import { FILTER_TYPES, SORT_TYPES } from '@/app/shared/utils/filter-types';
 import { useSearchParams } from 'react-router';
 import { useDebouncedCallback } from 'use-debounce';
+import { useCallback } from 'react';
 
 
 export default function Filters(){
@@ -21,17 +22,31 @@ export default function Filters(){
         }
       }, 1000);
 
-    const handleChangeOrder = (order:ORDER_TYPES) => {
+    const handleChangeOrder = useCallback((order:SORT_TYPES) => {
         setSearchParams((prevParams:URLSearchParams) => {
             return {...prevParams, [FILTER_TYPES.ORDER]: order}
         })
+    }, []);
+
+    //THIS PREVENT TO CREATE AN ARROW FUNCTION INLINE IN THE COMPONENT PROP AND THEREFORE CREATING A NEW REFERENCE IN EVERY RE-RENDER
+    const handleSearchBarChange = useCallback((query:string) => {
+      handleChangeQuery(query, FILTER_TYPES.SEARCH)
+    }, []);
+
+    const checkSelected = (kind:SORT_TYPES):boolean => {
+      if(params.get('order') === kind){
+        return true;
+      }
+      return false;
     }
     
     return(
         <div className={styles.filtersComponent}>
-            <SearchBar onChange={(query) => handleChangeQuery(query, FILTER_TYPES.SEARCH)}/>
-            <button value={ORDER_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as ORDER_TYPES)}>A-Z</button>
-            <button value={ORDER_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as ORDER_TYPES)}>Z-A</button>
+            <SearchBar onChange={handleSearchBarChange}/>
+            <div className={styles.sortFilters}>
+              <button value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} className={checkSelected(SORT_TYPES.ASC) ? styles.selected : styles.unSelected}>A-Z</button>
+              <button value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} className={checkSelected(SORT_TYPES.DESC) ? styles.selected : styles.unSelected}>Z-A</button>
+            </div>
         </div>
     )
 }

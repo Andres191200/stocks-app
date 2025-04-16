@@ -1,4 +1,4 @@
-enum ORDER_TYPES{
+enum SORT_TYPES{
     ASC = "asc",
     DESC = "desc"
 }
@@ -8,4 +8,4 @@ enum FILTER_TYPES{
     ORDER = "order"
 }
 
-export {FILTER_TYPES, ORDER_TYPES};
+export {FILTER_TYPES, SORT_TYPES};
