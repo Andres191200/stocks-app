@@ -7,15 +7,5 @@
     .sortFilters{
         display: flex;
         gap:var(--padding-md);
-        button{
-            padding:var(--padding-sm) var(--padding-md);
-            border-radius: var(--default-border-radius);
-            background-color: var(--dark-tertiary);
-            border:none;
-
-            &.selected{
-                border:1px solid var(--dark-fourty);
-            }
-        }
     }
 }

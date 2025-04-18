@@ -4,6 +4,7 @@ import { FILTER_TYPES, SORT_TYPES } from '@/app/shared/utils/filter-types';
 import { useSearchParams } from 'react-router';
 import { useDebouncedCallback } from 'use-debounce';
 import { useCallback } from 'react';
+import Button from '@/app/shared/components/button/Button';
 
 
 export default function Filters(){
@@ -44,8 +45,8 @@ export default function Filters(){
         <div className={styles.filtersComponent}>
             <SearchBar onChange={handleSearchBarChange}/>
             <div className={styles.sortFilters}>
-              <button value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} className={checkSelected(SORT_TYPES.ASC) ? styles.selected : styles.unSelected}>A-Z</button>
-              <button value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} className={checkSelected(SORT_TYPES.DESC) ? styles.selected : styles.unSelected}>Z-A</button>
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
             </div>
         </div>
     )

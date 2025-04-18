@@ -1,0 +1,23 @@
+.buttonComponent{
+    padding:var(--padding-sm) var(--padding-md);
+    border-radius: var(--default-border-radius);
+    background-color: var(--dark-secondary);
+    border:none;
+    color: var(--light-primary);
+    transition: 150ms background ease-out, 150ms transform linear, 150ms filter ease-out;
+    cursor:pointer;
+
+    &:hover{
+        filter:brightness(1.1);
+    }
+    
+    &:active{
+        transform: scale(0.8);
+    }
+}
+
+.active{
+    border:2px solid var(--dark-fourty) !important;
+    background-color: var(--dark-tertiary);
+    font-weight: 600;
+}
