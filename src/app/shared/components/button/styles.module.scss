@@ -4,7 +4,7 @@
     background-color: var(--dark-secondary);
     border:none;
     color: var(--light-primary);
-    transition: 150ms background ease-out, 150ms transform linear, 150ms filter ease-out;
+    transition: 150ms background ease-out, 100ms transform linear, 150ms filter ease-out;
     cursor:pointer;
 
     &:hover{

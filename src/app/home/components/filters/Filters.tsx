@@ -6,6 +6,12 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useCallback } from 'react';
 import Button from '@/app/shared/components/button/Button';
 
+const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
+  if(params.get('order') === kind){
+    return true;
+  }
+  return false;
+}
 
 export default function Filters(){
     const [params, setSearchParams] = useSearchParams();
@@ -33,20 +39,13 @@ export default function Filters(){
     const handleSearchBarChange = useCallback((query:string) => {
       handleChangeQuery(query, FILTER_TYPES.SEARCH)
     }, []);
-
-    const checkSelected = (kind:SORT_TYPES):boolean => {
-      if(params.get('order') === kind){
-        return true;
-      }
-      return false;
-    }
     
     return(
         <div className={styles.filtersComponent}>
             <SearchBar onChange={handleSearchBarChange}/>
             <div className={styles.sortFilters}>
-              <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
-              <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC, params)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC, params)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
             </div>
         </div>
     )
