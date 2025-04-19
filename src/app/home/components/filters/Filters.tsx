@@ -1,10 +1,11 @@
 import SearchBar from '@/app/shared/components/search-bar/SearchBar';
 import styles from './styles.module.scss';
 import { FILTER_TYPES, SORT_TYPES } from '@/app/shared/utils/filter-types';
-import { useSearchParams } from 'react-router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import Button from '@/app/shared/components/button/Button';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
   if(params.get('order') === kind){
@@ -13,26 +14,28 @@ const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
   return false;
 }
 
+const updateParams = (key: string, value: string, params: URLSearchParams, router: AppRouterInstance) => {
+  if(value){
+    params.set(key, value);
+  }
+  else{
+    params.delete(key);
+  }
+
+  router.push(`?${params.toString()}`);
+}
+
 export default function Filters(){
-    const [params, setSearchParams] = useSearchParams();
+    const params = useSearchParams();
+    const router = useRouter();
+    const updatedParams = useMemo(() => new URLSearchParams(params.toString()), [params]);
 
     const handleChangeQuery = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
-        if(query.length > 0){
-          setSearchParams((prevParams:URLSearchParams) => {
-            return {...prevParams, [type]: query}
-          });
-        }
-        else{
-          const formattedSearchParams = new URLSearchParams(params);
-          formattedSearchParams.delete(type);
-          setSearchParams(formattedSearchParams);
-        }
-      }, 1000);
+      updateParams(FILTER_TYPES.SEARCH, query, updatedParams, router);
+    }, 1000);
 
     const handleChangeOrder = useCallback((order:SORT_TYPES) => {
-        setSearchParams((prevParams:URLSearchParams) => {
-            return {...prevParams, [FILTER_TYPES.ORDER]: order}
-        })
+        updateParams(FILTER_TYPES.ORDER, order, updatedParams, router);
     }, []);
 
     //THIS PREVENT TO CREATE AN ARROW FUNCTION INLINE IN THE COMPONENT PROP AND THEREFORE CREATING A NEW REFERENCE IN EVERY RE-RENDER

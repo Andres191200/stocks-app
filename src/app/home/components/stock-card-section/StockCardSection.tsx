@@ -7,14 +7,13 @@ import IError from "@/app/shared/types/IError";
 import SearchBar from "@/app/shared/components/search-bar/SearchBar";
 import getStocksData, { IStockData } from "../../actions/getStocksData";
 import { useDebouncedCallback } from "use-debounce";
-import { useSearchParams } from "react-router";
 import styles from './styles.module.scss';
 import {FILTER_TYPES, SORT_TYPES} from "@/app/shared/utils/filter-types";
 import Filters from "../filters/Filters";
+import { useSearchParams } from "next/navigation";
 
 export default function StockCardSection(){
-  const [params, setSearchParams] = useSearchParams();
-
+  const params = useSearchParams();
   const { isPending, error: stocksError, data: stocks } = useQuery({
     queryKey: ["stocksData"],
     queryFn: getStocksData,
