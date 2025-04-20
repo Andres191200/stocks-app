@@ -1,12 +1,11 @@
-import { RefetchOptions, useQuery } from "@tanstack/react-query";
+'use client';
+import { useQuery } from "@tanstack/react-query";
 import StockCardGrid from "../stock-card-grid/StockCardGrid";
 import StockCard from "../stock-card/StockCard";
 import Skeleton from "../skeleton/Skeleton";
 import Error from "@/app/shared/components/error/error";
 import IError from "@/app/shared/types/IError";
-import SearchBar from "@/app/shared/components/search-bar/SearchBar";
 import getStocksData, { IStockData } from "../../actions/getStocksData";
-import { useDebouncedCallback } from "use-debounce";
 import styles from './styles.module.scss';
 import {FILTER_TYPES, SORT_TYPES} from "@/app/shared/utils/filter-types";
 import Filters from "../filters/Filters";

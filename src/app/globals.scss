@@ -54,6 +54,13 @@
   font-family: "Poppins", serif !important;
 }
 
+.main-screen-container{
+  width: 100%;
+  margin-left: var(--sidebar-width);
+  background: var(--dark-primary);
+  padding: var(--padding-2md);
+  box-sizing: border-box;
+}
 
 html,
 body,
