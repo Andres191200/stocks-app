@@ -16,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Sidebar />
-        {children}
+        <div className="main-screen-container">
+          {children}
+        </div>
       </body>
     </html>
   );
