@@ -1,11 +1,10 @@
+'use client'
 import type { Metadata } from "next";
-import '@/app/globals.scss';
+import "@/app/globals.scss";
 import Sidebar from "./shared/components/sidebar/Sidebar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-export const metadata: Metadata = {
-  title: "Stock Viewer",
-  description: "Stock viewer app in Next JS and SASS",
-};
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -14,12 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Sidebar />
-        <div className="main-screen-container">
-          {children}
-        </div>
-      </body>
+      <title>Stocks Viewer</title>
+      <meta name="Stock viewer" content="Stock viewer app using Next JS / Tanstack Query / Zustand" />
+      <QueryClientProvider client={queryClient}>
+        <body>
+          <Sidebar />
+          <div className="main-screen-container">{children}</div>
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }
