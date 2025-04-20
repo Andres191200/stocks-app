@@ -76,77 +76,79 @@ export default function StockCard({ stock }: { stock: IStockData }) {
   return (
     <>
       <Toaster />
-      <div
-        className={styles.stockCardComponent}
-        style={
-          { "--tooltip-content": `"${stock.name}"` } as React.CSSProperties
-        }
-        ref={cardRef}
-      >
-        <div className={styles.stockCardHeader}>
-          <div className={styles.stockSymbolContainer}>
-            <h5 className={styles.stockSymbol}>{stock.symbol}</h5>
-          </div>
-          <div className={styles.aditionalStockInfoContainer}>
-            <div className={styles.favouriteContainer}>
-              {favourites.has(stock.symbol) ? (
-                <Image
-                  src={"/favourite-filled.svg"}
-                  alt="favourite button"
-                  height={25}
-                  width={25}
-                  onClick={() => deleteFav(stock.symbol, deleteFavourite)}
-                />
-              ) : (
-                <Image
-                  src={"/favourite.svg"}
-                  alt="favourite button"
-                  height={25}
-                  width={25}
-                  onClick={() => addFav(stock, addFavourite)}
-                />
-              )}
+      <a href={`/stock/${stock.symbol}`} className={styles.stockCardLink}>
+        <div
+          className={styles.stockCardComponent}
+          style={
+            { "--tooltip-content": `"${stock.name}"` } as React.CSSProperties
+          }
+          ref={cardRef}
+        >
+          <div className={styles.stockCardHeader}>
+            <div className={styles.stockSymbolContainer}>
+              <h5 className={styles.stockSymbol}>{stock.symbol}</h5>
+            </div>
+            <div className={styles.aditionalStockInfoContainer}>
+              <div className={styles.favouriteContainer}>
+                {favourites.has(stock.symbol) ? (
+                  <Image
+                    src={"/favourite-filled.svg"}
+                    alt="favourite button"
+                    height={25}
+                    width={25}
+                    onClick={() => deleteFav(stock.symbol, deleteFavourite)}
+                  />
+                ) : (
+                  <Image
+                    src={"/favourite.svg"}
+                    alt="favourite button"
+                    height={25}
+                    width={25}
+                    onClick={() => addFav(stock, addFavourite)}
+                  />
+                )}
+              </div>
             </div>
           </div>
+          <div className={styles.stockNameContainer}>
+            <span className={styles.stockName}>{stock.name}</span>
+          </div>
+          <div className={styles.stockValueContainer}>
+            <h4 className={styles.stockValue}>{stock.lastsale.toString()}</h4>
+          </div>
+          <div className={styles.valueHistoryChart}>
+            <LineChart
+              width={420}
+              height={160}
+              data={checkData(stock.name)}
+              margin={{ top: 10, bottom: 10 }}
+            >
+              <CartesianGrid stroke="null" />
+              <XAxis dataKey="name" fontSize={12} />
+              <YAxis
+                orientation="right"
+                dataKey="value"
+                fontSize={12}
+                width={50}
+                domain={[
+                  CalculateMinValueInArray(checkData(stock.name)),
+                  CalculateMaxValueInArray(checkData(stock.name)),
+                ]}
+              />
+              <Tooltip
+                contentStyle={tooltipContainerStyles}
+                labelStyle={{ fontSize: "14px" }}
+                itemStyle={{ fontSize: "14px" }}
+              />
+              <Line
+                type="monotone"
+                dataKey="lastsale"
+                stroke={checkLineColor(checkData(stock.name))}
+              />
+            </LineChart>
+          </div>
         </div>
-        <div className={styles.stockNameContainer}>
-          <span className={styles.stockName}>{stock.name}</span>
-        </div>
-        <div className={styles.stockValueContainer}>
-          <h4 className={styles.stockValue}>{stock.lastsale.toString()}</h4>
-        </div>
-        <div className={styles.valueHistoryChart}>
-          <LineChart
-            width={420}
-            height={160}
-            data={checkData(stock.name)}
-            margin={{ top: 10, bottom: 10 }}
-          >
-            <CartesianGrid stroke="null"/>
-            <XAxis dataKey="name" fontSize={12} />
-            <YAxis
-              orientation="right"
-              dataKey="value"
-              fontSize={12}
-              width={50}
-              domain={[
-                CalculateMinValueInArray(checkData(stock.name)),
-                CalculateMaxValueInArray(checkData(stock.name)),
-              ]}
-            />
-            <Tooltip
-              contentStyle={tooltipContainerStyles}
-              labelStyle={{ fontSize: "14px" }}
-              itemStyle={{ fontSize: "14px" }}
-            />
-            <Line
-              type="monotone"
-              dataKey="lastsale"
-              stroke={checkLineColor(checkData(stock.name))}
-            />
-          </LineChart>
-        </div>
-      </div>
+      </a>
     </>
   );
 }
