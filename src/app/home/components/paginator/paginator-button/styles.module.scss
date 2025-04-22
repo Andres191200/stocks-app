@@ -1,0 +1,25 @@
+.paginatorButtonComponent{
+    aspect-ratio: 1/1;
+    width: 50px;
+    
+    button{
+        cursor:pointer;
+        background-color: transparent;
+        padding:var(--padding-sm);
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: var(--border-radius-sm);
+        border: 1px solid var(--dark-tertiary);
+        color:var(--light-primary);
+        transition: all 150ms ease-out;
+
+        &.active{
+            background-color: var(--dark-tertiary);
+            font-weight: bold;
+        }
+
+        &:hover{
+            background-color: var(--dark-fourty);
+        }
+    }
+}
