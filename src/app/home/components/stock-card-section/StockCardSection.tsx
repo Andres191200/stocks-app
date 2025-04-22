@@ -10,12 +10,14 @@ import styles from './styles.module.scss';
 import {FILTER_TYPES, SORT_TYPES} from "@/app/shared/utils/filter-types";
 import Filters from "../filters/Filters";
 import { useSearchParams } from "next/navigation";
+import Paginator from "../paginator/Paginator";
 
 export default function StockCardSection(){
   const params = useSearchParams();
+  const currentPage = Number(params.get(FILTER_TYPES.PAGE || 1));
   const { isPending, error: stocksError, data: stocks } = useQuery({
     queryKey: ["stocksData"],
-    queryFn: getStocksData,
+    queryFn: () => getStocksData(currentPage),
   });
 
   function formatStocks():IStockData[] | undefined{
@@ -56,6 +58,7 @@ export default function StockCardSection(){
           ) : <p className={styles.noMatchStocks}>No stocks found</p>
         }
       </StockCardGrid>
+      <Paginator currentPage={currentPage} pagesQuantity={5}/>
     </div>
   )
 }

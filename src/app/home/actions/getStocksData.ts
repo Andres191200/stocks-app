@@ -8,9 +8,10 @@ export interface IStockData {
   netchange: string;
 }
 
-export default async function getStocksData(): Promise<IStockData[]> {
+export default async function getStocksData(page:number): Promise<IStockData[]> {
   try {
-    const response = await fetchData();
+    const response = await fetchData(page);
+    return [];
     return response.data.body;
   } catch (error) {
     throw {
@@ -20,9 +21,9 @@ export default async function getStocksData(): Promise<IStockData[]> {
   }
 }
 
-function fetchData(): AxiosPromise<{ body: IStockData[] }> {
+function fetchData(page:number = 1): AxiosPromise<{ body: IStockData[] }> {
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/v2/markets/tickers?page=1&type=STOCKS`,
+    `${process.env.NEXT_PUBLIC_API_URL}/v2/markets/tickers?page=${page}&type=STOCKS`,
     {
       headers: {
         "x-rapidapi-key": process.env.NEXT_PUBLIC_API_KEY,

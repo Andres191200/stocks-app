@@ -5,7 +5,8 @@ enum SORT_TYPES{
 
 enum FILTER_TYPES{
     SEARCH = "search",
-    ORDER = "order"
+    ORDER = "order",
+    PAGE = "page"
 }
 
 export {FILTER_TYPES, SORT_TYPES};
