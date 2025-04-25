@@ -23,7 +23,7 @@ export default function Paginator({ currentPage, pagesQuantity }: IPaginator){
     return(
         <div className={styles.paginatorComponent}>
             {
-                Array.from([1,2,3,4,5], (idx) => <PaginatorButton number={idx} onClick={onClick}/>)
+                Array.from([1,2,3,4,5], (idx) => <PaginatorButton number={idx} onClick={onClick} key={idx}/>)
             }
         </div>
     )

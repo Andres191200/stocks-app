@@ -46,7 +46,7 @@ export default function StockCardSection(){
     return <Error code={_error.code} errorMessage={_error.errorMessage} />
   }
   return(
-    <div className={styles.stockCardSectionComponent}>
+    <div className={styles.stockCardSectionComponent} key={params.get(FILTER_TYPES.PAGE)}>
       <Filters />
       <StockCardGrid>
         {
