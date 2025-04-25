@@ -63,7 +63,9 @@ export default function StockCardSection() {
         </StockCardGrid>
       )}
 
-      <Paginator currentPage={currentPage} pagesQuantity={5} />
+      {!isPending ? (
+        <Paginator currentPage={currentPage} pagesQuantity={5} />
+      ) : null}
     </div>
   );
 }
