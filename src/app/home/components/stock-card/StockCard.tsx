@@ -8,7 +8,7 @@ import {
   YAxis,
 } from "recharts";
 import styles from "./styles.module.scss";
-import { CSSProperties, useEffect, useRef } from "react";
+import React, { CSSProperties, useEffect, useRef } from "react";
 import { IStockCard, TImmutableStockCard } from "./types/stockCard";
 import { TImmutableMockData } from "./types/data";
 import { CalculateMinValueInArray } from "./utils/minValue";
@@ -38,15 +38,20 @@ function checkData(stockName: string): TImmutableMockData[] {
   return mockData2;
 }
 
-function addFav(stock: IStockCard, addFavourite: (stock: IStockCard) => void) {
+function addFav(stock: IStockCard, addFavourite: (stock: IStockCard) => void, event: React.MouseEvent<HTMLImageElement>) {
+  event.stopPropagation();
+  event.preventDefault();
   notifyFavouriteAdded();
   addFavourite(stock);
 }
 
 function deleteFav(
   key: string,
-  deleteFavourite: (favouriteId: string) => void
+  deleteFavourite: (favouriteId: string) => void,
+  event: React.MouseEvent<HTMLImageElement>
 ) {
+  event.stopPropagation();
+  event.preventDefault();
   notifyFavouriteDeleted();
   deleteFavourite(key);
 }
@@ -96,7 +101,7 @@ export default function StockCard({ stock }: { stock: IStockData }) {
                     alt="favourite button"
                     height={25}
                     width={25}
-                    onClick={() => deleteFav(stock.symbol, deleteFavourite)}
+                    onClick={(event) => deleteFav(stock.symbol, deleteFavourite, event)}
                   />
                 ) : (
                   <Image
@@ -104,7 +109,7 @@ export default function StockCard({ stock }: { stock: IStockData }) {
                     alt="favourite button"
                     height={25}
                     width={25}
-                    onClick={() => addFav(stock, addFavourite)}
+                    onClick={(event) => addFav(stock, addFavourite, event)}
                   />
                 )}
               </div>

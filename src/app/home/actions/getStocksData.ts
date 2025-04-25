@@ -11,7 +11,6 @@ export interface IStockData {
 export default async function getStocksData(page:number): Promise<IStockData[]> {
   try {
     const response = await fetchData(page);
-    return [];
     return response.data.body;
   } catch (error) {
     throw {
