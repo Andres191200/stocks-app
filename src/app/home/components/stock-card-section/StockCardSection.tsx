@@ -54,8 +54,8 @@ export default function StockCardSection() {
       ) : (
         <StockCardGrid>
           {formatStocks()!.length > 0 ? (
-            formatStocks()!.map((stock) => (
-              <StockCard stock={stock} key={stock.symbol} />
+            formatStocks()!.map((stock, idx) => (
+              <StockCard stock={stock} key={stock.symbol} idx={idx}/>
             ))
           ) : (
             <p className={styles.noMatchStocks}>No stocks found</p>
