@@ -18,6 +18,9 @@
 
 .stockCardComponent, .stockCardSkeletonComponent{
     @include stockCardBase();
+}
+
+.stockCardSkeletonComponent{
 
     .stockSymbol{  
         width: 100px;
@@ -30,9 +33,7 @@
         height: 20px;
         @include stockSkeletonBox();
     }
-}
-
-.stockCardSkeletonComponent{
+    
     pointer-events: none;
     &:hover{
         transform:none;

@@ -13,7 +13,7 @@ export default function StockCardSkeleton() {
             repeat: -1,
             duration: 1,
             yoyo: true,
-            ease: Power3.easeInOut
+            ease: "power1.inOut"
         })
     }, cardRef)
     
