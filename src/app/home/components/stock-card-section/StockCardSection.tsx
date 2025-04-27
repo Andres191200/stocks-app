@@ -49,17 +49,18 @@ export default function StockCardSection() {
   return (
     <div className={styles.stockCardSectionComponent}>
       <Filters />
-      {isPending ? (
+      {!isPending ? (
         <Skeleton />
       ) : (
         <StockCardGrid>
-          {formatStocks()!.length > 0 ? (
+          {/* {formatStocks()!.length > 0 ? (
             formatStocks()!.map((stock, idx) => (
               <StockCard stock={stock} key={stock.symbol} idx={idx}/>
             ))
           ) : (
             <p className={styles.noMatchStocks}>No stocks found</p>
-          )}
+          )} */}
+          <p>a</p>
         </StockCardGrid>
       )}
 

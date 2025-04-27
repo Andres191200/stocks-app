@@ -1,4 +1,4 @@
-.stockCardComponent{
+@mixin stockCardBase{
     display: flex;
     width: 430px;
     position: relative;
@@ -9,6 +9,37 @@
     padding:var(--padding-md) var(--padding-md) var(--padding-2md) var(--padding-md);
     color: var(--light-primary);
     border: 1px solid var(--dark-tertiary);
+}
+
+@mixin stockSkeletonBox{
+    background-color: var(--dark-tertiary);
+    border-radius: var(--border-radius-sm);
+}
+
+.stockCardComponent, .stockCardSkeletonComponent{
+    @include stockCardBase();
+
+    .stockSymbol{  
+        width: 100px;
+        height: 30px;
+        @include stockSkeletonBox();
+    }
+
+    .stockName{
+        width: 100px;
+        height: 20px;
+        @include stockSkeletonBox();
+    }
+}
+
+.stockCardSkeletonComponent{
+    pointer-events: none;
+    &:hover{
+        transform:none;
+    }
+    &::after, &::before{
+        display: none;
+    }
 }
 
 .stockCardLink{
@@ -29,7 +60,7 @@
     margin-top: var(--margin-sm);
     width: 85%;
     border-radius: var(--border-radius-md);
-    background-color: var(--dark-primary);
+    background-color: var(--dark-tertiary);
     height: 120px;
 }
 
