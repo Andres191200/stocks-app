@@ -60,7 +60,6 @@ export default function StockCardSection() {
           ) : (
             <p className={styles.noMatchStocks}>No stocks found</p>
           )}
-          <p>a</p>
         </StockCardGrid>
       )}
 

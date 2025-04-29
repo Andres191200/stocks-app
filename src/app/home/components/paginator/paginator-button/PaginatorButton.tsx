@@ -20,7 +20,7 @@ export default function PaginatorButton({ onClick, number }: IPaginatorButton) {
         type="button"
         onClick={handleClick}
         className={
-          searchParams.get(FILTER_TYPES.PAGE) === number.toString()
+          (searchParams.get(FILTER_TYPES.PAGE) || '1') === number.toString()
             ? styles.active
             : styles.inactive
         }
