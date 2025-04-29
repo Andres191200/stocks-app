@@ -8,7 +8,7 @@ import Button from '@/app/shared/components/button/Button';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
-  if(params.get('order') === kind){
+  if(params.get(FILTER_TYPES.ORDER) === kind){
     return true;
   }
   return false;
@@ -49,6 +49,8 @@ export default function Filters(){
             <div className={styles.sortFilters}>
               <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC, params)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
               <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC, params)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.HIGHER, params)} text='High price' value={SORT_TYPES.HIGHER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.LOWER, params)} text='Low price' value={SORT_TYPES.LOWER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
             </div>
         </div>
     )

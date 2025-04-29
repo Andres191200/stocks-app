@@ -1,6 +1,8 @@
 enum SORT_TYPES{
     ASC = "asc",
-    DESC = "desc"
+    DESC = "desc",
+    HIGHER = "higher",
+    LOWER = "lower",
 }
 
 enum FILTER_TYPES{
