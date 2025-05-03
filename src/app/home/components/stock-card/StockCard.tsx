@@ -20,6 +20,7 @@ import { mockData, mockData2 } from "./utils/mockData";
 import toast, { Toaster } from "react-hot-toast";
 import toastOptions from "@/app/shared/utils/toastOptons";
 import gsap from "gsap";
+import { fadeInStockCardFrom, fadeInStockCardTo } from "./utils/animations";
 
 const notifyFavouriteAdded = () =>
   toast("Favourite added!", toastOptions["FAVOURITE_ADDED"]);
@@ -59,14 +60,14 @@ function deleteFav(
 export default function StockCard({ stock, idx }: { stock: IStockData, idx:number }) {
   const { addFavourite, deleteFavourite, favourites } = useStocksStore();
   const cardRef = useRef<HTMLDivElement>(null);
-  const delayFactor = 20;
+  const delayFactor = 10;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power4.out", delay: idx/delayFactor }
+        fadeInStockCardFrom(),
+        fadeInStockCardTo(idx/delayFactor)
       );
     }, cardRef);
 
