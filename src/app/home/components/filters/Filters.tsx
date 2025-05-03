@@ -6,6 +6,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useMemo } from 'react';
 import Button from '@/app/shared/components/button/Button';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { handleChangeOrderFn, handleChangeQueryFn } from './utils/handleChangeFilters';
 
 const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
   if(params.get(FILTER_TYPES.ORDER) === kind){
@@ -31,19 +32,18 @@ export default function Filters(){
     const updatedParams = useMemo(() => new URLSearchParams(params.toString()), [params]);
 
     const handleChangeQuery = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
-      updateParams(FILTER_TYPES.ORDER, '', updatedParams, router);
-      updateParams(FILTER_TYPES.SEARCH, query, updatedParams, router);
+      handleChangeQueryFn(query, type, updatedParams, router);
     }, 1000);
 
     const handleChangeOrder = useCallback((order:SORT_TYPES) => {
-        updateParams(FILTER_TYPES.SEARCH, '', updatedParams, router);
-        updateParams(FILTER_TYPES.ORDER, order, updatedParams, router);
+      handleChangeOrderFn(order, updatedParams, router);
     }, []);
 
     //THIS PREVENT TO CREATE AN ARROW FUNCTION INLINE IN THE COMPONENT PROP AND THEREFORE CREATING A NEW REFERENCE IN EVERY RE-RENDER
     const handleSearchBarChange = useCallback((query:string) => {
       handleChangeQuery(query, FILTER_TYPES.SEARCH)
     }, []);
+
     
     return(
         <div className={styles.filtersComponent}>

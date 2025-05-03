@@ -39,7 +39,11 @@ function checkData(stockName: string): TImmutableMockData[] {
   return mockData2;
 }
 
-function addFav(stock: IStockCard, addFavourite: (stock: IStockCard) => void, event: React.MouseEvent<HTMLImageElement>) {
+function addFav(
+  stock: IStockCard,
+  addFavourite: (stock: IStockCard) => void,
+  event: React.MouseEvent<HTMLImageElement>
+) {
   event.stopPropagation();
   event.preventDefault();
   notifyFavouriteAdded();
@@ -57,7 +61,13 @@ function deleteFav(
   deleteFavourite(key);
 }
 
-export default function StockCard({ stock, idx }: { stock: IStockData, idx:number }) {
+export default function StockCard({
+  stock,
+  idx,
+}: {
+  stock: IStockData;
+  idx: number;
+}) {
   const { addFavourite, deleteFavourite, favourites } = useStocksStore();
   const cardRef = useRef<HTMLDivElement>(null);
   const delayFactor = 10;
@@ -67,18 +77,12 @@ export default function StockCard({ stock, idx }: { stock: IStockData, idx:numbe
       gsap.fromTo(
         cardRef.current,
         fadeInStockCardFrom(),
-        fadeInStockCardTo(idx/delayFactor)
+        fadeInStockCardTo(idx / delayFactor)
       );
     }, cardRef);
 
     return () => ctx.revert();
   }, []);
-
-  const tooltipContainerStyles: CSSProperties = {
-    backgroundColor: "var(--dark-tertiary)",
-    border: "none",
-    borderRadius: "var(--border-radius-sm)",
-  };
 
   return (
     <>
@@ -103,7 +107,9 @@ export default function StockCard({ stock, idx }: { stock: IStockData, idx:numbe
                     alt="favourite button"
                     height={25}
                     width={25}
-                    onClick={(event) => deleteFav(stock.symbol, deleteFavourite, event)}
+                    onClick={(event) =>
+                      deleteFav(stock.symbol, deleteFavourite, event)
+                    }
                   />
                 ) : (
                   <Image
@@ -143,7 +149,11 @@ export default function StockCard({ stock, idx }: { stock: IStockData, idx:numbe
                 ]}
               />
               <Tooltip
-                contentStyle={tooltipContainerStyles}
+                contentStyle={{
+                  backgroundColor: "var(--dark-tertiary)",
+                  border: "none",
+                  borderRadius: "var(--border-radius-sm)",
+                }}
                 labelStyle={{ fontSize: "14px" }}
                 itemStyle={{ fontSize: "14px" }}
               />
