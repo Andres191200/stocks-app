@@ -31,10 +31,12 @@ export default function Filters(){
     const updatedParams = useMemo(() => new URLSearchParams(params.toString()), [params]);
 
     const handleChangeQuery = useDebouncedCallback((query:string, type:FILTER_TYPES) => {
+      updateParams(FILTER_TYPES.ORDER, '', updatedParams, router);
       updateParams(FILTER_TYPES.SEARCH, query, updatedParams, router);
     }, 1000);
 
     const handleChangeOrder = useCallback((order:SORT_TYPES) => {
+        updateParams(FILTER_TYPES.SEARCH, '', updatedParams, router);
         updateParams(FILTER_TYPES.ORDER, order, updatedParams, router);
     }, []);
 
@@ -45,7 +47,7 @@ export default function Filters(){
     
     return(
         <div className={styles.filtersComponent}>
-            <SearchBar onChange={handleSearchBarChange}/>
+            <SearchBar onChange={handleSearchBarChange} key={updatedParams.toString()}/>
             <div className={styles.sortFilters}>
               <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC, params)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
               <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC, params)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
