@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 import gsap from "gsap";
+import { pulsingSkeleton } from "./utils/animations";
 
 export default function StockCardSkeleton() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -9,13 +10,7 @@ export default function StockCardSkeleton() {
       cardRef.current?.querySelectorAll(".pulsing-animation");
     const ctx = gsap.context(() => {
       targetElements?.forEach((element) => {
-        gsap.to(element, {
-          opacity: 0,
-          repeat: -1,
-          duration: 1,
-          yoyo: true,
-          ease: "power1.inOut",
-        });
+        gsap.to(element, pulsingSkeleton());
       });
     }, cardRef);
 

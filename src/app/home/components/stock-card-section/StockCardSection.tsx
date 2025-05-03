@@ -11,10 +11,7 @@ import { FILTER_TYPES, SORT_TYPES } from "@/app/shared/utils/filter-types";
 import Filters from "../filters/Filters";
 import { useSearchParams } from "next/navigation";
 import Paginator from "../paginator/Paginator";
-
-function formatPrice(price:String){
-  return Number(price.substring(1));
-}
+import { formatStocks } from "./utils/formatStocks";
 
 export default function StockCardSection() {
   const ITEMS_PER_PAGE = 25;
@@ -30,31 +27,7 @@ export default function StockCardSection() {
     queryFn: () => getStocksData(currentPage),
   });
 
-  function formatStocks(): IStockData[] | undefined {
-    const query = params.get(FILTER_TYPES.SEARCH);
-    const order = params.get(FILTER_TYPES.ORDER);
-    if (query?.trim().length! > 0) {
-      return stocks?.filter((stock) =>
-        stock.name.toLowerCase().includes(query!.toLowerCase())
-      );
-    }
-    if (order) {
-      if (order === SORT_TYPES.ASC) {
-        return stocks?.sort((a, b) => a.name.localeCompare(b.name));
-      }
-      if (order === SORT_TYPES.DESC) {
-        return stocks?.sort((a, b) => b.name.localeCompare(a.name));
-      }
-      if (order === SORT_TYPES.HIGHER) {
-        return stocks?.sort((a, b) => formatPrice(a.lastsale.toString()) < formatPrice(b.lastsale.toString()) ? 1 : -1);
-      }
-      if (order == SORT_TYPES.LOWER) {
-        return stocks?.sort((a, b) => formatPrice(a.lastsale.toString()) > formatPrice(b.lastsale.toString()) ? 1 : -1);
-      }
-    }
-    return stocks;
-  }
-
+ 
   if (stocksError) {
     const _error = stocksError as unknown as IError;
     return <Error code={_error.code} errorMessage={_error.errorMessage} />;
@@ -67,8 +40,8 @@ export default function StockCardSection() {
         <Skeleton />
       ) : (
         <StockCardGrid>
-          {formatStocks()!.length > 0 ? (
-            formatStocks()!.map((stock, idx) => (
+          {formatStocks(stocks, params)!.length > 0 ? (
+            formatStocks(stocks, params)!.map((stock, idx) => (
               <StockCard stock={stock} key={stock.symbol} idx={idx}/>
             ))
           ) : (
@@ -78,7 +51,7 @@ export default function StockCardSection() {
       )}
       {/* PAGINATOR NOT WORKING WITH FILTERED ITEMS (THERE IS NO ENDPOINT IN THE API FOR FILTERING) */}
       {/* TODO: SAVE THE FILTERED STOCKS SO THE APP DOESN'T CALL THIS FILTERING CALCULATION FUNCTION MULTIPLE TIMES */}
-      {!isPending && formatStocks()!.length >= ITEMS_PER_PAGE ? (
+      {!isPending && formatStocks(stocks, params)!.length >= ITEMS_PER_PAGE ? (
         <Paginator currentPage={currentPage} pagesQuantity={5} />
       ) : null}
     </div>
