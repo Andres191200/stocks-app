@@ -1,13 +1,13 @@
 import { IStockData } from "@/app/home/actions/getStocksData";
 import { FILTER_TYPES, SORT_TYPES } from "@/app/shared/utils/filter-types";
-import { useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 function formatPrice(price:String){
     return Number(price.substring(1));
   }
 
-export function formatStocks(stocks: IStockData[]): IStockData[] | undefined {
-    const params = useSearchParams();
+export function formatStocks(stocks: IStockData[], params:ReadonlyURLSearchParams
+): IStockData[] | undefined {
     const query = params.get(FILTER_TYPES.SEARCH);
     const order = params.get(FILTER_TYPES.ORDER);
     if (query?.trim().length! > 0) {

@@ -60,7 +60,7 @@ function deleteFav(
 export default function StockCard({ stock, idx }: { stock: IStockData, idx:number }) {
   const { addFavourite, deleteFavourite, favourites } = useStocksStore();
   const cardRef = useRef<HTMLDivElement>(null);
-  const delayFactor = 20;
+  const delayFactor = 10;
 
   useEffect(() => {
     const ctx = gsap.context(() => {

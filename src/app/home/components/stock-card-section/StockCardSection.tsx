@@ -40,8 +40,8 @@ export default function StockCardSection() {
         <Skeleton />
       ) : (
         <StockCardGrid>
-          {formatStocks(stocks)!.length > 0 ? (
-            formatStocks(stocks)!.map((stock, idx) => (
+          {formatStocks(stocks, params)!.length > 0 ? (
+            formatStocks(stocks, params)!.map((stock, idx) => (
               <StockCard stock={stock} key={stock.symbol} idx={idx}/>
             ))
           ) : (
@@ -51,7 +51,7 @@ export default function StockCardSection() {
       )}
       {/* PAGINATOR NOT WORKING WITH FILTERED ITEMS (THERE IS NO ENDPOINT IN THE API FOR FILTERING) */}
       {/* TODO: SAVE THE FILTERED STOCKS SO THE APP DOESN'T CALL THIS FILTERING CALCULATION FUNCTION MULTIPLE TIMES */}
-      {!isPending && formatStocks(stocks)!.length >= ITEMS_PER_PAGE ? (
+      {!isPending && formatStocks(stocks, params)!.length >= ITEMS_PER_PAGE ? (
         <Paginator currentPage={currentPage} pagesQuantity={5} />
       ) : null}
     </div>
