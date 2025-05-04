@@ -15,17 +15,6 @@ const checkSelected = (kind:SORT_TYPES, params: URLSearchParams):boolean => {
   return false;
 }
 
-const updateParams = (key: string, value: string, params: URLSearchParams, router: AppRouterInstance) => {
-  if(value){
-    params.set(key, value);
-  }
-  else{
-    params.delete(key);
-  }
-
-  router.push(`?${params.toString()}`);
-}
-
 export default function Filters(){
     const params = useSearchParams();
     const router = useRouter();
@@ -51,8 +40,8 @@ export default function Filters(){
             <div className={styles.sortFilters}>
               <Button kind='toggle' active={checkSelected(SORT_TYPES.ASC, params)} text='A - Z' value={SORT_TYPES.ASC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
               <Button kind='toggle' active={checkSelected(SORT_TYPES.DESC, params)} text='Z - A' value={SORT_TYPES.DESC} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)}/> 
-              <Button kind='toggle' active={checkSelected(SORT_TYPES.HIGHER, params)} text='High price' value={SORT_TYPES.HIGHER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
-              <Button kind='toggle' active={checkSelected(SORT_TYPES.LOWER, params)} text='Low price' value={SORT_TYPES.LOWER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.HIGHER, params)} text='Higher price' value={SORT_TYPES.HIGHER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
+              <Button kind='toggle' active={checkSelected(SORT_TYPES.LOWER, params)} text='Lower price' value={SORT_TYPES.LOWER} onClick={(event) => handleChangeOrder((event.target as HTMLButtonElement).value as SORT_TYPES)} />
             </div>
         </div>
     )
