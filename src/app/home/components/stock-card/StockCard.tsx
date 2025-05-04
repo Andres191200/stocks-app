@@ -150,12 +150,12 @@ export default function StockCard({
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--dark-tertiary)",
+                  backgroundColor: "var(--dark-fourty)",
                   border: "none",
                   borderRadius: "var(--border-radius-sm)",
                 }}
-                labelStyle={{ fontSize: "14px" }}
-                itemStyle={{ fontSize: "14px" }}
+                labelStyle={{ fontSize: "14px", color: "#CCC" }}
+                itemStyle={{ fontSize: "14px", color: "#FFF" }}
               />
               <Line
                 type="monotone"
