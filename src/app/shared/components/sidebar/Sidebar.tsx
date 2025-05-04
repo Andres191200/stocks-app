@@ -1,21 +1,14 @@
 'use client';
 import { useStocksStore } from '@/app/home/store/store';
 import styles from './styles.module.scss';
-import { TImmutableStockCard } from '@/app/home/components/stock-card/types/stockCard';
 import Favourite from '../favourite/Favourite';
 import Image from 'next/image';
-
-interface stocksState{
-    favourites: Map<string, TImmutableStockCard>;
-    addFavourite: (favourite: TImmutableStockCard) => void,
-    deleteFavourite: (favouriteId: string) => void
-}
 
 export default function Sidebar(){
     const {favourites} = useStocksStore();
     return(
         <div className={styles.sidebarComponent}>
-            <h4>Favourites</h4>
+            <h4>My stocks</h4>
             <div className={styles.favouritesContainer}>
             {
                 favourites.size !== 0
