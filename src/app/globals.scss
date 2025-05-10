@@ -3,6 +3,8 @@
    License: none (public domain)
 */
 
+
+@import './themes.scss';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
@@ -22,7 +24,6 @@
   --light-primary: hsl(247, 18%, 90%);
   --light-primary-60: hsla(244, 18%, 90%, .6);
 
-  --warning: hsl(22, 100%, 63%);
   --warning-l-60: hsl(22, 100%, 60%);
   --warning-l-10: hsl(22, 100%, 10%);
 
@@ -31,7 +32,7 @@
   --btc-stock-color: #F7931A;
   --eth-stock-color: #444A77;
   --doge-stock-color: #D7CDAA;
-  --ada-stock-color: var(--light-primary);
+  --ada-stock-color: var(--bg-color-5);
 
   --margin-sm: .5rem;
   --margin-md: 1rem;
@@ -44,20 +45,20 @@
   --border-radius-sm: .25rem;
   --border-radius-md: .5rem;
   --border-radius-lg: 1rem;
-
-  --black-to-orange-filter: invert(75%) sepia(31%) saturate(5487%) hue-rotate(330deg) brightness(101%) contrast(101%);
+  
   --black-to-white-filter: invert(100%) sepia(2%) saturate(2%) hue-rotate(246deg) brightness(117%) contrast(100%);
   --black-to-error-filter: brightness(0) saturate(100%) invert(37%) sepia(54%) saturate(3080%) hue-rotate(335deg) brightness(100%) contrast(105%);
 }
 
 *{
+  transition: background 100ms ease-out, color 100ms ease-out;
   font-family: "Poppins", serif !important;
 }
 
 .main-screen-container{
   width: 100%;
   margin-left: var(--sidebar-width);
-  background: var(--dark-primary);
+  background: var(--bg-color-1);
   padding: var(--padding-2md);
   box-sizing: border-box;
 }

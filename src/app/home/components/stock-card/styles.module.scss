@@ -4,15 +4,15 @@
     position: relative;
     flex-direction: column;
     gap:var(--margin-sm);
-    background-color: var(--dark-secondary);
+    background-color: var(--bg-color-2);
     border-radius: var(--default-border-radius);
     padding:var(--padding-md) var(--padding-md) var(--padding-2md) var(--padding-md);
-    color: var(--light-primary);
-    border: 1px solid var(--dark-tertiary);
+    color: var(--bg-color-5);
+    border: 1px solid var(--bg-color-3);
 }
 
 @mixin stockSkeletonBox{
-    background-color: var(--dark-tertiary);
+    background-color: var(--bg-color-3);
     border-radius: var(--border-radius-sm);
 }
 
@@ -46,7 +46,7 @@
 .stockCardLink{
     transition: transform 150ms ease-out;
     text-decoration: none;
-    color:var(--light-primary);
+    color:var(--bg-color-5);
     height: 100%;
     padding: none;
     margin: 0;
@@ -61,7 +61,7 @@
     margin-top: var(--margin-sm);
     width: 85%;
     border-radius: var(--border-radius-md);
-    background-color: var(--dark-tertiary);
+    background-color: var(--bg-color-3);
     height: 120px;
 }
 
@@ -104,6 +104,7 @@
 
     .stockSymbol{
         font-weight: 600 !important;
+        color: var(--text-color-1);
     }
 }
 
@@ -122,7 +123,7 @@
 
     .stockName{
         text-wrap: nowrap;
-        color:var(--light-primary-60);
+        color:var(--text-color-2);
         width: 100%;
         display: block;
         text-overflow: ellipsis;
@@ -145,7 +146,7 @@
             z-index: 10;
             padding:var(--padding-sm);
             pointer-events: none;
-            background-color: var(--dark-tertiary);
+            background-color: var(--bg-color-3);
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         
             @starting-style{

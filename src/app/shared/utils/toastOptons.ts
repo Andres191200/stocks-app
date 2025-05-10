@@ -4,8 +4,8 @@ const toastOptions = {
    'FAVOURITE_ADDED': {
      icon:'😊',
      style: {
-        backgroundColor: 'var(--dark-tertiary)',
-        color: 'var(--light-primary)',
+        backgroundColor: 'var(--bg-color-3)',
+        color: 'var(--bg-color-5)',
         boxShadow: 'none',
         margin: '10px',
      }
@@ -13,8 +13,8 @@ const toastOptions = {
    'FAVOURITE_DELETED': {
      icon: '🥺',
      style: {
-        backgroundColor: 'var(--dark-tertiary)',
-        color: 'var(--light-primary)',
+        backgroundColor: 'var(--bg-color-3)',
+        color: 'var(--bg-color-5)',
         boxShadow: 'none',
         margin: '10px',
      }

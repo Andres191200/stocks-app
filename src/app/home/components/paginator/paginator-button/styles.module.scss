@@ -9,17 +9,17 @@
         width: 100%;
         aspect-ratio: 1/1;
         border-radius: var(--border-radius-sm);
-        border: 1px solid var(--dark-tertiary);
-        color:var(--light-primary);
+        border: 1px solid var(--bg-color-3);
+        color:var(--bg-color-5);
         transition: all 150ms ease-out;
 
         &.active{
-            background-color: var(--dark-tertiary);
+            background-color: var(--bg-color-3);
             font-weight: bold;
         }
 
         &:hover{
-            background-color: var(--dark-fourty);
+            background-color: var(--bg-color-4);
         }
     }
 }

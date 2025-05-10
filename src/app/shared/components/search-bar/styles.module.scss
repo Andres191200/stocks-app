@@ -4,12 +4,12 @@
     input{
         width: 100%;
         box-sizing: border-box;
-        border:1px solid var(--dark-tertiary);
+        border:1px solid var(--border-color);
         background-color: transparent;
         border-radius: var(--default-border-radius);
         padding: var(--padding-sm) var(--padding-sm) var(--padding-sm) 40px;
         font-size: 1.1rem;
-        color:var(--light-primary);
+        color:var(--bg-color-5);
         transition: background 250ms ease-out;
 
 
@@ -26,7 +26,7 @@
         }
         
         &:not(:placeholder-shown){
-            background-color: var(--dark-tertiary);
+            background-color: var(--bg-color-3);
         }
     }
 }
