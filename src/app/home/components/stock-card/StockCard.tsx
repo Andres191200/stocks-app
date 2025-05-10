@@ -150,7 +150,7 @@ export default function StockCard({
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--dark-fourty)",
+                  backgroundColor: "var(--bg-color-4)",
                   border: "none",
                   borderRadius: "var(--border-radius-sm)",
                 }}
