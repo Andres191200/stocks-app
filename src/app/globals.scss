@@ -55,6 +55,10 @@
   font-family: "Poppins", serif !important;
 }
 
+.main-screen-container, .sidebar, .value-history-chart, .stock-card, .button{
+  transition: background 500ms ease-out, color 250ms ease-out !important;
+}
+
 .main-screen-container{
   width: 100%;
   margin-left: var(--sidebar-width);

@@ -89,7 +89,7 @@ export default function StockCard({
       <Toaster />
       <a href={`/stock/${stock.symbol}`} className={styles.stockCardLink}>
         <div
-          className={styles.stockCardComponent}
+          className={`${styles.stockCardComponent} stock-card`}
           style={
             { "--tooltip-content": `"${stock.name}"` } as React.CSSProperties
           }
@@ -129,7 +129,7 @@ export default function StockCard({
           <div className={styles.stockValueContainer}>
             <h4 className={styles.stockValue}>{stock.lastsale.toString()}</h4>
           </div>
-          <div className={styles.valueHistoryChart}>
+          <div className={`${styles.valueHistoryChart} value-history-chart`}>
             <LineChart
               width={420}
               height={160}

@@ -8,7 +8,7 @@ import ToggleTheme from '../toggle-theme/ToggleTheme';
 export default function Sidebar(){
     const {favourites} = useStocksStore();
     return(
-        <div className={styles.sidebarComponent}>
+        <div className={`${styles.sidebarComponent} sidebar`}>
             <h4>My stocks</h4>
             <ToggleTheme />
             <div className={styles.favouritesContainer}>
