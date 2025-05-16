@@ -28,7 +28,7 @@ function LinkButton({ href, text, anchorProps, ...props }: ILinkButton) {
 
 function ToggleButton({ onClick, text, active, ...props }: IToggleButton) {
     return(
-      <button className={`${styles.buttonComponent} ${active ? styles.active : ''}`} onClick={onClick} {...props}>
+      <button className={`${styles.buttonComponent} ${active ? styles.active : ''} button`} onClick={onClick} {...props}>
         {text}
       </button>
     )

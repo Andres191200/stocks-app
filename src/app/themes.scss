@@ -1,0 +1,31 @@
+:root{
+    --bg-color-1: hsl(244, 19%, 16%);
+    --bg-color-2: hsl(244, 16%, 20%);
+    --bg-color-3: hsl(245, 16%, 28%);
+    --bg-color-4: hsl(245, 16%, 45%);
+    --bg-color-5:hsl(247, 18%, 90%);
+    --bg-color-6: hsla(244, 18%, 90%, .6);
+    --bg-color-1-80: hsla(244, 20%, 16%, .8);
+    --bg-color-2-80: hsla(244, 16%, 20%, .8);
+    --border-color: hsl(244, 19%, 30%);
+    --text-color-1: hsl(244, 19%, 76%);
+    --text-color-2: hsl(244, 19%, 56%);
+    --black-to-orange-filter: invert(75%) sepia(31%) saturate(5487%) hue-rotate(330deg) brightness(101%) contrast(101%);
+    --warning: hsl(22, 100%, 63%);
+}
+
+body.light-theme{
+    --bg-color-1: hsl(244, 19%, 70%);
+    --bg-color-2: hsl(244, 16%, 75%);
+    --bg-color-3: hsl(245, 16%, 72%);
+    --bg-color-4: hsl(245, 16%, 80%);
+    --bg-color-5: #282828;
+    --bg-color-6: hsla(244, 18%, 90%, .6);
+    --bg-color-1-80: hsla(0, 0%, 41%, 0.8);
+    --bg-color-2-80: hsla(244, 16%, 20%, .8);
+    --border-color: hsl(245, 16%, 58%);
+    --text-color-1: hsl(244, 19%, 25%);
+    --text-color-2: hsl(244, 19%, 50%);
+    --warning: #c95919;
+    --black-to-orange-filter:brightness(0) saturate(100%) invert(35%) sepia(97%) saturate(695%) hue-rotate(347deg) brightness(95%) contrast(95%);
+}
