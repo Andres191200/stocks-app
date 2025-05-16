@@ -10,7 +10,7 @@ export default function Sidebar(){
     return(
         <div className={`${styles.sidebarComponent} sidebar`}>
             <h4>My stocks</h4>
-            <ToggleTheme />
+            {/* <ToggleTheme /> */}
             <div className={styles.favouritesContainer}>
             {
                 favourites.size !== 0
